@@ -12,16 +12,16 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		374DCDD3A8484D2BB4101393 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		300CE62D35E94138BD1DFF13 /* iCielVAGRoundedNext-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */; };
+		374DCDD3A8484D2BB4101393 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		4933BE07F13D44A091CD5C92 /* iCielVAGRoundedNext-DemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */; };
+		58E76A3720E74167AC0F0958 /* iCielVAGRoundedNext-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */; };
 		69F7C16C29790AF600829A18 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 69F7C16B29790AF600829A18 /* Fonts */; };
+		728D49D744EC498EB7F5506F /* iCielVAGRoundedNext-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */; };
 		7699B88040F8A987B510C191 /* libPods-Vector-VectorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Vector-VectorTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9552BF9B4CD8448691AE8CB8 /* iCielVAGRoundedNext-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 060CFA4AEDB345A78805314B /* iCielVAGRoundedNext-Bold.otf */; };
-		4933BE07F13D44A091CD5C92 /* iCielVAGRoundedNext-DemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */; };
 		B571B8AA0FCA40E498787E81 /* iCielVAGRoundedNext-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6FC3BE16B264F42AC2C2F46 /* iCielVAGRoundedNext-Light.otf */; };
-		58E76A3720E74167AC0F0958 /* iCielVAGRoundedNext-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */; };
-		728D49D744EC498EB7F5506F /* iCielVAGRoundedNext-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */; };
-		300CE62D35E94138BD1DFF13 /* iCielVAGRoundedNext-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,35 +30,35 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "Vector";
+			remoteInfo = Vector;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* VectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VectorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* VectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* VectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "VectorTests.m"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Vector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Vector/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "Vector/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Vector/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Vector/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Vector/main.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* VectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VectorTests.m; sourceTree = "<group>"; };
+		060CFA4AEDB345A78805314B /* iCielVAGRoundedNext-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-Bold.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Bold.otf"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Vector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Vector/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Vector/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Vector/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Vector/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Vector/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Vector-VectorTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Vector-VectorTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-Regular.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Regular.otf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Vector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vector.debug.xcconfig"; path = "Target Support Files/Pods-Vector/Pods-Vector.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Vector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vector.release.xcconfig"; path = "Target Support Files/Pods-Vector/Pods-Vector.release.xcconfig"; sourceTree = "<group>"; };
+		5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-DemiBold.otf"; path = "../assets/fonts/iCielVAGRoundedNext-DemiBold.otf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Vector-VectorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vector-VectorTests.debug.xcconfig"; path = "Target Support Files/Pods-Vector-VectorTests/Pods-Vector-VectorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Vector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Vector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F7C16B29790AF600829A18 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "Vector/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-Medium.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Medium.otf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Vector/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Vector-VectorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vector-VectorTests.release.xcconfig"; path = "Target Support Files/Pods-Vector-VectorTests/Pods-Vector-VectorTests.release.xcconfig"; sourceTree = "<group>"; };
+		92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-LightItalic.otf"; path = "../assets/fonts/iCielVAGRoundedNext-LightItalic.otf"; sourceTree = "<group>"; };
+		C6FC3BE16B264F42AC2C2F46 /* iCielVAGRoundedNext-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "iCielVAGRoundedNext-Light.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Light.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		060CFA4AEDB345A78805314B /* iCielVAGRoundedNext-Bold.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-Bold.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-DemiBold.otf"; path = "../assets/fonts/iCielVAGRoundedNext-DemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C6FC3BE16B264F42AC2C2F46 /* iCielVAGRoundedNext-Light.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-Light.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-LightItalic.otf"; path = "../assets/fonts/iCielVAGRoundedNext-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-Medium.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */ = {isa = PBXFileReference; name = "iCielVAGRoundedNext-Regular.otf"; path = "../assets/fonts/iCielVAGRoundedNext-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 				00E356F21AD99517003FC87E /* VectorTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "VectorTests";
+			path = VectorTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -108,7 +108,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = "Vector";
+			name = Vector;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -154,6 +154,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		97C9ED7A37D74498BA89EAAB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				060CFA4AEDB345A78805314B /* iCielVAGRoundedNext-Bold.otf */,
+				5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */,
+				C6FC3BE16B264F42AC2C2F46 /* iCielVAGRoundedNext-Light.otf */,
+				92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */,
+				765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */,
+				2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,20 +178,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		97C9ED7A37D74498BA89EAAB /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				060CFA4AEDB345A78805314B /* iCielVAGRoundedNext-Bold.otf */,
-				5AF3597B669A49B6B0D0B47F /* iCielVAGRoundedNext-DemiBold.otf */,
-				C6FC3BE16B264F42AC2C2F46 /* iCielVAGRoundedNext-Light.otf */,
-				92C94E712BC24E05A738156F /* iCielVAGRoundedNext-LightItalic.otf */,
-				765561AEB45C429DA3D3A072 /* iCielVAGRoundedNext-Medium.otf */,
-				2B21ACC64C64432B8E45B7B0 /* iCielVAGRoundedNext-Regular.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -198,8 +198,7 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "VectorTests";
-			productname = "VectorTests";
+			name = VectorTests;
 			productReference = 00E356EE1AD99517003FC87E /* VectorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -220,8 +219,8 @@
 			);
 			dependencies = (
 			);
-			name = "Vector";
-			productName = "Vector";
+			name = Vector;
+			productName = Vector;
 			productReference = 13B07F961A680F5B00A75B9A /* Vector.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -276,7 +275,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				69F7C16C29790AF600829A18 /* Fonts in Resources */,
-				374DCDD3A8484D2BB4101393 /* (null) in Resources */,
+				374DCDD3A8484D2BB4101393 /* BuildFile in Resources */,
 				9552BF9B4CD8448691AE8CB8 /* iCielVAGRoundedNext-Bold.otf in Resources */,
 				4933BE07F13D44A091CD5C92 /* iCielVAGRoundedNext-DemiBold.otf in Resources */,
 				B571B8AA0FCA40E498787E81 /* iCielVAGRoundedNext-Light.otf in Resources */,
@@ -476,7 +475,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "VectorTests/Info.plist";
+				INFOPLIST_FILE = VectorTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -488,7 +487,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.app.vector";
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.vector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vector.app/Vector";
 			};
@@ -500,7 +499,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "VectorTests/Info.plist";
+				INFOPLIST_FILE = VectorTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,7 +511,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.app.vector";
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.vector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vector.app/Vector";
 			};
@@ -526,8 +525,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "Vector/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Vector";
+				INFOPLIST_FILE = Vector/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vector;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,8 +537,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.app.vector";
-				PRODUCT_NAME = "Vector";
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.vector;
+				PRODUCT_NAME = Vector;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -553,8 +552,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "Vector/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Vector";
+				INFOPLIST_FILE = Vector/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vector;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,8 +564,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.app.vector";
-				PRODUCT_NAME = "Vector";
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.vector;
+				PRODUCT_NAME = Vector;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -1,24 +1,21 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AppDrawer from './AppDrawer';
-import DetailProfileScreen from '../DetailProfile/DetailProfile.Screen';
-import DetailFollowerScreen from '../DetailFollower/DetailFollower.Screen';
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { LoginScreen } from "../screens/login";
+import { RegisterScreen } from "../screens/register";
+import { APP_SCREEN } from "./Screen-type";
 
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
-      initialRouteName={'Drawer'}>
-      <Stack.Screen name="Drawer" component={AppDrawer} />
+      screenOptions={{ headerShown: false }}
+      initialRouteName={"DetailProfileScreen"}
+    >
+      <Stack.Screen name={APP_SCREEN.LOGIN_SCREEN} component={LoginScreen} />
       <Stack.Screen
-        name="DetailProfileScreen"
-        component={DetailProfileScreen}
-      />
-      <Stack.Screen
-        name="DetailFollowerScreen"
-        component={DetailFollowerScreen}
+        name={APP_SCREEN.REGISTER_SCREEN}
+        component={RegisterScreen}
       />
     </Stack.Navigator>
   );
