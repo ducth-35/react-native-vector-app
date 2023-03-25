@@ -5,7 +5,7 @@ import {
   NavigationContainerRef,
   StackActions,
 } from "@react-navigation/native";
-import { RootNativeStackParamList } from "./Screen-type";
+import { RootNativeStackParamList } from "./screen-type";
 
 export const navigationRef =
   createRef<NavigationContainerRef<RootNativeStackParamList>>();

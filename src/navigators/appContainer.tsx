@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import AppStack from "./AppStack";
-import { navigationRef } from "./Navigation-services";
+import AppStack from "./appStack";
+import { navigationRef } from "./navigation-services";
 
 const AppContainer = () => {
   return (

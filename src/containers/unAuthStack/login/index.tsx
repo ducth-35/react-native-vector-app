@@ -1,8 +1,8 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity } from "react-native";
-import { navigate } from "../../Navigator/Navigation-services";
-import { APP_SCREEN } from "../../Navigator/Screen-type";
+import { navigate } from "../../../navigators/navigation-services";
+import { APP_SCREEN } from "../../../navigators/screen-type";
 export const LoginScreen = () => {
   return (
     <SafeAreaView>

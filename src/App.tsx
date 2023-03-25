@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import createSagaMiddleware from "redux-saga";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { applyMiddleware, createStore } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import rootSaga from "./src/redux-saga/sagas";
-import RootContainer from "./src/Navigator/AppContainer";
+import rootSaga from "./redux-saga/sagas";
+import RootContainer from "./navigators/appContainer";
 import "react-native-gesture-handler";
-import rootReducer from "./src/redux-saga/reducers";
+import rootReducer from "./redux-saga/reducers";
+import { ActivityIndicator, StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -26,11 +28,22 @@ sagaMiddleware.run(rootSaga);
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <RootContainer />
+      <PersistGate
+        loading={<ActivityIndicator color={"red"} />}
+        persistor={persistor}
+      >
+        <GestureHandlerRootView style={styles.root}>
+          <RootContainer />
+        </GestureHandlerRootView>
       </PersistGate>
     </Provider>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+});

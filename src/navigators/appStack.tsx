@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { LoginScreen } from "../screens/login";
-import { RegisterScreen } from "../screens/register";
-import { APP_SCREEN } from "./Screen-type";
+import { APP_SCREEN } from "./screen-type";
+import { LoginScreen } from "../containers/unAuthStack/login";
+import { RegisterScreen } from "../containers/unAuthStack/register";
 
 const Stack = createNativeStackNavigator();
 
@@ -10,7 +10,7 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={"DetailProfileScreen"}
+      initialRouteName={APP_SCREEN.LOGIN_SCREEN}
     >
       <Stack.Screen name={APP_SCREEN.LOGIN_SCREEN} component={LoginScreen} />
       <Stack.Screen
