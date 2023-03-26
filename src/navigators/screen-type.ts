@@ -4,6 +4,8 @@ export enum APP_SCREEN {
   ONBOARDING_SCREEN = "ONBOARDING_SCREEN",
   LOGIN_SCREEN = "LOGIN_SCREEN",
   REGISTER_SCREEN = "REGISTER_SCREEN",
+  INPUT_NUMBER_SCREEN = "INPUT_NUMBER_SCREEN",
+  VERIFY_NUMBER_SCREEN = "VERIFY_NUMBER_SCREEN",
 }
 
 export type StackParamsList = {
@@ -11,6 +13,8 @@ export type StackParamsList = {
   [APP_SCREEN.ONBOARDING_SCREEN]: undefined;
   [APP_SCREEN.LOGIN_SCREEN]: undefined;
   [APP_SCREEN.REGISTER_SCREEN]: undefined;
+  [APP_SCREEN.INPUT_NUMBER_SCREEN]: undefined;
+  [APP_SCREEN.VERIFY_NUMBER_SCREEN]: undefined;
 };
 export type RootNativeStackParamList = StackParamsList;
 

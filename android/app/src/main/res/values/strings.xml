@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Vector</string>
+    <string name="facebook_app_id">887759752280162</string>
+    <string name="fb_login_protocol_scheme">fb887759752280162</string>
+    <string name="facebook_client_token">74682b52085cdc714925e089b22c3c31</string>
 </resources>
