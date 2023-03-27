@@ -9,8 +9,13 @@ import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
 
 export const InputNumberScreen = () => {
+  const [loading, setLoading] = React.useState<boolean>(false);
   const handleVerify = () => {
-    navigate(APP_SCREEN.VERIFY_NUMBER_SCREEN);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate(APP_SCREEN.VERIFY_NUMBER_SCREEN);
+    }, 1500);
   };
 
   return (
@@ -19,14 +24,24 @@ export const InputNumberScreen = () => {
         <TextApp style={styles.textHeader1}>Nhập số điện thoại</TextApp>
         <TextApp> Nhập số điện thoại của bạn</TextApp>
       </View>
-      <View style={styles.viewInput}>
-        <TextInput
-          placeholder="Số điện thoại"
-          style={styles.input}
-          keyboardType="numeric"
+      <View style={styles.viewInputPhone}>
+        <TextApp style={styles.textLableName}>Số điện thoại</TextApp>
+        <View style={styles.viewInput}>
+          <TextInput
+            placeholder="Nhập số điện thoại"
+            style={styles.input}
+            keyboardType="numeric"
+          />
+        </View>
+      </View>
+      <View style={styles.viewDone}>
+        <Button
+          title="Xác nhận"
+          style={styles.btn}
+          onPress={handleVerify}
+          isLoading={loading}
         />
       </View>
-      <Button title="Tiếp tục" style={styles.btn} onPress={handleVerify} />
     </SafeAreaView>
   );
 };
@@ -34,11 +49,11 @@ export const InputNumberScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: scale(30),
+    backgroundColor: "#fff",
   },
   viewHeader: {
     marginTop: scale(50),
-    alignItems: "center",
+    marginHorizontal: scale(30),
   },
   textHeader1: {
     fontFamily: FontFamily.poppins_regular,
@@ -46,12 +61,10 @@ const styles = StyleSheet.create({
     marginBottom: scale(10),
   },
   viewInput: {
-    width: "100%",
-    alignItems: "center",
+    borderColor: "#B8B8D2",
+    borderWidth: 1,
     padding: scale(10),
-    borderBottomColor: "gray",
-    borderBottomWidth: 1,
-    marginTop: scale(50),
+    borderRadius: 5,
   },
   input: {
     fontFamily: FontFamily.poppins_regular,
@@ -59,5 +72,16 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginTop: scale(50),
+  },
+  textLableName: {
+    color: "#858597",
+    marginBottom: scale(10),
+  },
+  viewInputPhone: {
+    marginTop: scale(50),
+    marginHorizontal: scale(30),
+  },
+  viewDone: {
+    marginHorizontal: scale(30),
   },
 });

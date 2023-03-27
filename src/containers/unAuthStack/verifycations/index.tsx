@@ -11,6 +11,8 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
+import { navigate } from "../../../navigators/navigation-services";
+import { APP_SCREEN } from "../../../navigators/screen-type";
 
 const CELL_COUNT = 6;
 
@@ -21,6 +23,15 @@ export const VerifyNumberScreen = () => {
     value,
     setValue,
   });
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const handleSelectAccountType = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate(APP_SCREEN.SELECT_ACCOUNT_TYPE_SCREEN);
+    }, 1500);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.viewHeader}>
@@ -54,7 +65,12 @@ export const VerifyNumberScreen = () => {
         <TextApp> 23 giây</TextApp>
       </View>
 
-      <Button title="Xác nhận" style={styles.btn} />
+      <Button
+        title="Xác nhận"
+        style={styles.btn}
+        onPress={handleSelectAccountType}
+        isLoading={loading}
+      />
       <Pressable style={styles.reSend}>
         <TextApp style={styles.textResend}> Gửi lại</TextApp>
       </Pressable>
@@ -72,19 +88,19 @@ const styles = StyleSheet.create({
   },
   textHeader1: {
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(28),
+    fontSize: scale(34),
     marginBottom: scale(10),
   },
   btn: {
     marginTop: scale(50),
   },
 
-  root: { padding: 20, minHeight: 300 },
+  root: { padding: 20, minHeight: scale(300) },
   title: { textAlign: "center", fontSize: 30 },
   codeFieldRoot: { marginTop: 20 },
   cellRoot: {
-    width: 40,
-    height: 40,
+    width: scale(40),
+    height: scale(40),
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: "#ccc",
@@ -93,11 +109,11 @@ const styles = StyleSheet.create({
   },
   cellText: {
     color: "#000",
-    fontSize: 36,
+    fontSize: scale(30),
     textAlign: "center",
   },
   focusCell: {
-    borderBottomColor: "gray",
+    borderBottomColor: "#D64D47",
     borderBottomWidth: 2,
   },
   reSend: {

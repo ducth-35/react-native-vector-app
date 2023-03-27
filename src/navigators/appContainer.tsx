@@ -7,10 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const AppContainer = () => {
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+    <KeyboardAvoidingView style={{ flex: 1 }}>
       <NavigationContainer ref={navigationRef}>
         <AppStack />
       </NavigationContainer>
