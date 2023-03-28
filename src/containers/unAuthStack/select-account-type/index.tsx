@@ -4,6 +4,8 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import TextApp from "../../../components/textApp";
 import { Button } from "../../../components/btn";
+import { navigate } from "../../../navigators/navigation-services";
+import { APP_SCREEN } from "../../../navigators/screen-type";
 
 const TabSelect = [
   {
@@ -34,6 +36,7 @@ export const SelectAccountType = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      navigate(APP_SCREEN.MAIN_TAB);
     }, 1500);
   };
 

@@ -6,6 +6,12 @@ import { RegisterScreen } from "../containers/unAuthStack/register";
 import { InputNumberScreen } from "../containers/unAuthStack/input-phone";
 import { VerifyNumberScreen } from "../containers/unAuthStack/verifycations";
 import { SelectAccountType } from "../containers/unAuthStack/select-account-type";
+import { MainTab } from "./main-tab";
+import { HomeScreen } from "../containers/authStack/home-screen";
+import { CalendaScreen } from "../containers/authStack/calenda-screen";
+import { ResultScreen } from "../containers/authStack/results-screen";
+import { PaymentScreen } from "../containers/authStack/payment-screen";
+import { AccountScreen } from "../containers/authStack/account-screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +19,7 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={APP_SCREEN.LOGIN_SCREEN}
+      initialRouteName={APP_SCREEN.SELECT_ACCOUNT_TYPE_SCREEN}
     >
       <Stack.Screen name={APP_SCREEN.LOGIN_SCREEN} component={LoginScreen} />
       <Stack.Screen
@@ -31,6 +37,21 @@ const AppStack = () => {
       <Stack.Screen
         name={APP_SCREEN.SELECT_ACCOUNT_TYPE_SCREEN}
         component={SelectAccountType}
+      />
+      <Stack.Screen name={APP_SCREEN.MAIN_TAB} component={MainTab} />
+      <Stack.Screen name={APP_SCREEN.HOME_SCREEN} component={HomeScreen} />
+      <Stack.Screen
+        name={APP_SCREEN.CALENDA_SCREEN}
+        component={CalendaScreen}
+      />
+      <Stack.Screen name={APP_SCREEN.RESULT_SCREEN} component={ResultScreen} />
+      <Stack.Screen
+        name={APP_SCREEN.PAYMENT_SCREEN}
+        component={PaymentScreen}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.ACCOUNT_SCREEN}
+        component={AccountScreen}
       />
     </Stack.Navigator>
   );

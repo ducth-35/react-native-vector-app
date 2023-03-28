@@ -1,0 +1,1 @@
+export { IconAsset } from "./icon";
