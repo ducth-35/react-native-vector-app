@@ -10,7 +10,6 @@ import { IconAsset } from "../assets";
 import { APP_SCREEN } from "./screen-type";
 import { FontFamily } from "../common/constant";
 import { scale } from "../common/scale";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,10 +23,6 @@ const BOTTOM_TAB_ROUTE = {
 
 export const MainTab = () => {
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#fff" }}
-      edges={["bottom"]}
-    >
       <Tab.Navigator
         initialRouteName={APP_SCREEN.HOME_SCREEN}
         screenOptions={({ route }) => ({
@@ -107,7 +102,6 @@ export const MainTab = () => {
           component={AccountScreen}
         />
       </Tab.Navigator>
-    </SafeAreaView>
   );
 };
 
