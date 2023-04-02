@@ -13,6 +13,8 @@ export enum APP_SCREEN {
   RESULT_SCREEN = "RESULT_SCREEN",
   PAYMENT_SCREEN = "PAYMENT_SCREEN",
   ACCOUNT_SCREEN = "ACCOUNT_SCREEN",
+  SEARCH_SCREEN = "SEARCH_SCREEN",
+  FILTER_SCREEN = "FILTER_SCREEN",
 }
 
 export type StackParamsList = {
@@ -29,6 +31,8 @@ export type StackParamsList = {
   [APP_SCREEN.RESULT_SCREEN]: undefined;
   [APP_SCREEN.PAYMENT_SCREEN]: undefined;
   [APP_SCREEN.ACCOUNT_SCREEN]: undefined;
+  [APP_SCREEN.SEARCH_SCREEN]: undefined;
+  [APP_SCREEN.FILTER_SCREEN]: undefined;
 };
 export type RootNativeStackParamList = StackParamsList;
 

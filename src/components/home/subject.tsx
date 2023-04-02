@@ -67,7 +67,7 @@ export const Subject = () => {
 };
 const style = StyleSheet.create({
   container: {
-    marginVertical: scale(20),
+    marginBottom: scale(20),
   },
   title: {
     marginHorizontal: scale(20),

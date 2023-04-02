@@ -11,7 +11,6 @@ import "react-native-gesture-handler";
 import rootReducer from "./redux-saga/reducers";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
