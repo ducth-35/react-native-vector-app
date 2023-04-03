@@ -12,6 +12,9 @@ import BELL from "./bell-notification.svg";
 import BACK from "./back.svg";
 import CLOSE from "./close.svg";
 import STAR from "./star.svg";
+import BANNER_TUTOR from "./banner-tutor-details.svg";
+import DROPDOWN from "./ic-dropdown.svg";
+import FILTER from "./ic-filter.svg";
 
 export const HomeSVG = {
   TOAN,
@@ -27,4 +30,7 @@ export const HomeSVG = {
   BACK,
   CLOSE,
   STAR,
+  BANNER_TUTOR,
+  DROPDOWN,
+  FILTER,
 };

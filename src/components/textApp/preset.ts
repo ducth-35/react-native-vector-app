@@ -48,6 +48,24 @@ export const textPresets = StyleSheet.create({
     fontWeight: "400",
     color: "#1f1f39",
   },
+  text20: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: scale(20),
+    fontWeight: "400",
+    color: "#1f1f39",
+  },
+  text20Blue: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: scale(20),
+    fontWeight: "400",
+    color: "#3d5cff",
+  },
+  text16: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: scale(16),
+    fontWeight: "400",
+    color: "#1f1f39",
+  },
 });
 
 export type TextPresetNames = keyof typeof textPresets;

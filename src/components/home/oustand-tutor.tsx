@@ -5,10 +5,21 @@ import { scale } from "../../common/scale";
 import { DataOutStand } from "../../utils/mock-data";
 import { OutStandInterface } from "../../types/outstand";
 import { CardOutStand } from "../card-outstand";
+import { navigate } from "../../navigators/navigation-services";
+import { APP_SCREEN } from "../../navigators/screen-type";
 
 export const OutstandTutor = () => {
   const renderItem: ListRenderItem<OutStandInterface> = ({ item }) => {
-    return <CardOutStand item={item} newStyle={style.viewCardOutStand} />;
+    const handlePressItem = () => {
+      navigate(APP_SCREEN.TUTOR_DETAIL_SCREEN);
+    };
+    return (
+      <CardOutStand
+        item={item}
+        newStyle={style.viewCardOutStand}
+        onPress={handlePressItem}
+      />
+    );
   };
   return (
     <View style={style.container}>

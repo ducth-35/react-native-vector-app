@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, View, ViewProps, ViewStyle } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import TextApp from "../textApp";
 import { OutStandInterface } from "../../types/outstand";
 import FastImage from "react-native-fast-image";
@@ -9,19 +15,21 @@ import { HomeSVG } from "../../assets";
 type Props = {
   item: OutStandInterface;
   newStyle: ViewStyle;
+  onPress: () => void;
 };
 
-export const CardOutStand = ({ item, newStyle }: Props) => {
+export const CardOutStand = ({ item, newStyle, onPress }: Props) => {
   return (
-    <View style={newStyle}>
-      <View>
-        <FastImage source={item.image} style={styles.avatar} />
-        <View style={styles.viewStar}>
-          <HomeSVG.STAR />
-          <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
-            {item.star}
-          </TextApp>
-        </View>
+    <TouchableOpacity style={newStyle} onPress={onPress}>
+      <View style={styles.card}>
+        <FastImage source={item.image} style={styles.avatar}>
+          <View style={styles.viewStar}>
+            <HomeSVG.STAR />
+            <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
+              {item.star}
+            </TextApp>
+          </View>
+        </FastImage>
       </View>
       <View style={styles.viewInfor}>
         <TextApp preset="text14">{item.name}</TextApp>
@@ -38,11 +46,15 @@ export const CardOutStand = ({ item, newStyle }: Props) => {
           ))}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  card: {
+    position: "relative",
+    overflow: "hidden",
+  },
   avatar: {
     width: scale(68),
     height: scale(68),
@@ -50,6 +62,7 @@ const styles = StyleSheet.create({
   },
   viewSubjec: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   viewItemSubjec: {
     backgroundColor: "#ffebf0",
@@ -57,6 +70,7 @@ const styles = StyleSheet.create({
     paddingVertical: scale(2),
     paddingHorizontal: scale(10),
     borderRadius: scale(5),
+    marginBottom: scale(10),
   },
   viewInfor: {
     marginLeft: scale(15),
@@ -68,13 +82,11 @@ const styles = StyleSheet.create({
   viewStar: {
     backgroundColor: "#fff",
     position: "absolute",
-    zIndex: 9,
-    bottom: -scale(5),
-    right: 12,
-    left: 12,
+    left: 10,
+    right: 10,
+    bottom: 0,
     borderRadius: 8,
-    width: scale(43),
-    height: scale(20),
+    paddingHorizontal: scale(10),
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

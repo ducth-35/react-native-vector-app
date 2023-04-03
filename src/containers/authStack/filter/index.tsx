@@ -7,6 +7,7 @@ import { CardSelect } from "../../../components/card-select";
 import { scale } from "../../../common/scale";
 import { ModalizeFilter } from "../../../components/Modalize-filter";
 import { Filter } from "../../../utils/enum";
+import { Header } from "../../../components/header";
 
 const SUBJECT = {
   label: "Môn học",
@@ -119,12 +120,7 @@ export const FilterScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.viewheader}>
-        <View style={styles.close}>
-          <HomeSVG.CLOSE />
-        </View>
-        <TextApp preset="text18">Bộ lọc tìm kiếm</TextApp>
-      </View>
+      <Header title="Bộ lọc tìm kiếm" backIcon={<HomeSVG.CLOSE />} />
       <View>
         <CardSelect
           lable="Môn học"
@@ -211,15 +207,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  viewheader: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  close: {
-    position: "absolute",
-    left: scale(20),
   },
   viewBottom: {
     flexDirection: "row",

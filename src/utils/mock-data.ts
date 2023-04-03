@@ -2,7 +2,7 @@ import { ImageAsset } from "../assets/image";
 
 export const DataOutStand = [
   {
-    name: "Phạm Thị Ngọc An",
+    name: "Phạm Thị Ngọc An ",
     school: "Đại học Ngoại Thương",
     star: 4.5,
     subject: ["Toán", "Lý", "Anh"],

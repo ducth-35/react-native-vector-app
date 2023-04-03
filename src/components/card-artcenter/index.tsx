@@ -30,7 +30,9 @@ export const CardArtCenter = (props: Props) => {
           ))}
           <View style={styles.viewStar}>
             <HomeSVG.STAR />
-            <TextApp preset="text12">{item.star}</TextApp>
+            <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
+              {item.star}
+            </TextApp>
           </View>
         </View>
       </View>
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
   },
   viewSubjec: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   viewItemSubjec: {
     backgroundColor: "#ffebf0",

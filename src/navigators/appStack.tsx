@@ -14,6 +14,7 @@ import { PaymentScreen } from "../containers/authStack/payment-screen";
 import { AccountScreen } from "../containers/authStack/account-screen";
 import { SearchScreen } from "../containers/authStack/search";
 import { FilterScreen } from "../containers/authStack/filter";
+import { TutorDetailScreen } from "../containers/authStack/tutor-details";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={APP_SCREEN.FILTER_SCREEN}
+      initialRouteName={APP_SCREEN.MAIN_TAB}
     >
       <Stack.Screen name={APP_SCREEN.LOGIN_SCREEN} component={LoginScreen} />
       <Stack.Screen
@@ -57,6 +58,10 @@ const AppStack = () => {
       />
       <Stack.Screen name={APP_SCREEN.SEARCH_SCREEN} component={SearchScreen} />
       <Stack.Screen name={APP_SCREEN.FILTER_SCREEN} component={FilterScreen} />
+      <Stack.Screen
+        name={APP_SCREEN.TUTOR_DETAIL_SCREEN}
+        component={TutorDetailScreen}
+      />
     </Stack.Navigator>
   );
 };
