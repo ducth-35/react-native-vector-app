@@ -13,7 +13,16 @@ export const ButtonPresets = StyleSheet.create({
     minWidth: "100%",
     minHeight: scale(45),
     paddingHorizontal: scale(10),
-    borderRadius: 12
+    borderRadius: 12,
+  },
+  white: {
+    backgroundColor: "#fff",
+    minWidth: "100%",
+    minHeight: scale(45),
+    paddingHorizontal: scale(10),
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#3d5cff",
   },
 });
 

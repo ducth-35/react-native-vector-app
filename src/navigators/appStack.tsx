@@ -15,6 +15,7 @@ import { AccountScreen } from "../containers/authStack/account-screen";
 import { SearchScreen } from "../containers/authStack/search";
 import { FilterScreen } from "../containers/authStack/filter";
 import { TutorDetailScreen } from "../containers/authStack/tutor-details";
+import { BookingInfor } from "../containers/authStack/book-infor";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +62,10 @@ const AppStack = () => {
       <Stack.Screen
         name={APP_SCREEN.TUTOR_DETAIL_SCREEN}
         component={TutorDetailScreen}
+      />
+        <Stack.Screen
+        name={APP_SCREEN.BOOKING_SCREEN}
+        component={BookingInfor}
       />
     </Stack.Navigator>
   );

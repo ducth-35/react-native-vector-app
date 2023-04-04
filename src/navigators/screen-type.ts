@@ -16,6 +16,7 @@ export enum APP_SCREEN {
   SEARCH_SCREEN = "SEARCH_SCREEN",
   FILTER_SCREEN = "FILTER_SCREEN",
   TUTOR_DETAIL_SCREEN = "TUTOR_DETAIL_SCREEN",
+  BOOKING_SCREEN = "BOOKING_SCREEN",
 }
 
 export type StackParamsList = {
@@ -35,6 +36,7 @@ export type StackParamsList = {
   [APP_SCREEN.SEARCH_SCREEN]: undefined;
   [APP_SCREEN.FILTER_SCREEN]: undefined;
   [APP_SCREEN.TUTOR_DETAIL_SCREEN]: undefined;
+  [APP_SCREEN.BOOKING_SCREEN]: undefined;
 };
 export type RootNativeStackParamList = StackParamsList;
 

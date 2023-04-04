@@ -9,11 +9,16 @@ import FastImage from "react-native-fast-image";
 import { ImageAsset } from "../../../assets/image";
 import { CardInforTutor } from "../../../components/card-infor-turtor";
 import { Button } from "../../../components/btn";
+import { navigate } from "../../../navigators/navigation-services";
+import { APP_SCREEN } from "../../../navigators/screen-type";
 
 export const TutorDetailScreen = () => {
+  const handleBooking = () => {
+    navigate(APP_SCREEN.BOOKING_SCREEN);
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Giáo viên" backIcon={<HomeSVG.BACK />} />
+      <Header canBack title="Giáo viên" backIcon={<HomeSVG.BACK />} />
       <ScrollView>
         <View style={styles.viewBanner}>
           <HomeSVG.BANNER_TUTOR />
@@ -62,7 +67,7 @@ export const TutorDetailScreen = () => {
         </View>
       </ScrollView>
       <View style={styles.viewDone}>
-        <Button preset="blue" title="Đặt lịch học" />
+        <Button preset="blue" title="Đặt lịch học" onPress={handleBooking} />
       </View>
     </SafeAreaView>
   );

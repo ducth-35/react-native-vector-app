@@ -8,7 +8,7 @@ import { ArtCenterInterface } from "../../types/artCenter";
 
 export const ArtCenter = () => {
   const renderItem: ListRenderItem<ArtCenterInterface> = ({ item }) => {
-    return <CardArtCenter item={item} />;
+    return <CardArtCenter item={item} newStyle={style.newStyle} />;
   };
   return (
     <View style={style.container}>
@@ -40,4 +40,10 @@ const style = StyleSheet.create({
   },
   textHeader: {},
   viewListOutStand: {},
+  newStyle: {
+    backgroundColor: "#f8f8ff",
+    marginLeft: scale(20),
+    marginTop: scale(10),
+    borderRadius: scale(12),
+  },
 });

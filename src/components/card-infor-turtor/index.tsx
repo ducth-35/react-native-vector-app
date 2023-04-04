@@ -4,8 +4,8 @@ import TextApp from "../textApp";
 import { scale } from "../../common/scale";
 
 type CardInforTutor = {
-  lable: string;
-  description: string;
+  lable?: string;
+  description?: string;
 };
 
 export const CardInforTutor = ({ lable, description }: CardInforTutor) => {

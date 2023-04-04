@@ -8,6 +8,7 @@ import { scale } from "../../../common/scale";
 import { ModalizeFilter } from "../../../components/Modalize-filter";
 import { Filter } from "../../../utils/enum";
 import { Header } from "../../../components/header";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const SUBJECT = {
   label: "Môn học",
@@ -81,8 +82,7 @@ export const FilterScreen = () => {
   const [selectedSchoolItems, setSelectedSchoolItems] = React.useState<
     string[]
   >([]);
-
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [price, setPrice] = React.useState(0);
 
   const handleOpenModal = (type: string) => {
     switch (type) {
@@ -120,7 +120,7 @@ export const FilterScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Bộ lọc tìm kiếm" backIcon={<HomeSVG.CLOSE />} />
+      <Header canBack title="Bộ lọc tìm kiếm" backIcon={<HomeSVG.CLOSE />} />
       <View>
         <CardSelect
           lable="Môn học"
@@ -152,6 +152,29 @@ export const FilterScreen = () => {
           onPressIn={() => handleOpenModal(Filter.SCHOOL)}
           dataSelect={selectedSchoolItems}
         />
+        <View style={styles.price}>
+          <TextApp> Giá 1 buổi học</TextApp>
+          <Slider
+            minimumValue={0}
+            maximumValue={1000000}
+            minimumTrackTintColor="#3d5cff"
+            thumbTintColor="#3d5cff"
+            trackStyle={{ height: 1.5 }}
+            thumbStyle={{
+              width: 15,
+              height: 15,
+              backgroundColor: "#fff",
+              borderWidth: 2,
+              borderColor: "#3d5cff",
+            }}
+            value={price}
+            onValueChange={(value) => console.log(value)}
+          />
+          <View style={styles.textPrice}>
+            <TextApp>200 nghìn</TextApp>
+            <TextApp>1 triệu</TextApp>
+          </View>
+        </View>
       </View>
       <View style={styles.viewBottom}>
         <Pressable style={styles.delete} onPress={handleClearAllSelectedItems}>
@@ -239,5 +262,12 @@ const styles = StyleSheet.create({
   textdelete: {},
   textdone: {
     color: "#fff",
+  },
+  price: {
+    margin: scale(20),
+  },
+  textPrice: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

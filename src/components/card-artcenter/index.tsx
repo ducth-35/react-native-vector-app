@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import TextApp from "../textApp";
 import FastImage from "react-native-fast-image";
 import { scale } from "../../common/scale";
@@ -8,12 +8,13 @@ import { ArtCenterInterface } from "../../types/artCenter";
 
 type Props = {
   item: ArtCenterInterface;
+  newStyle: ViewStyle;
 };
 
 export const CardArtCenter = (props: Props) => {
-  const { item } = props;
+  const { item, newStyle } = props;
   return (
-    <View style={styles.container}>
+    <View style={newStyle}>
       <FastImage source={item.image} style={styles.avatar} />
       <View style={styles.infor}>
         <TextApp preset="text12">{item.location}</TextApp>
@@ -41,12 +42,7 @@ export const CardArtCenter = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f8f8ff",
-    marginLeft: scale(20),
-    marginTop: scale(10),
-    borderRadius: scale(12),
-  },
+  container: {},
   avatar: {
     width: "100%",
     height: scale(130),

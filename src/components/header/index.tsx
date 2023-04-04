@@ -7,15 +7,19 @@ import { goBack } from "../../navigators/navigation-services";
 
 type HeaderProps = {
   title: string;
-  backIcon: JSX.Element;
+  backIcon?: JSX.Element;
+  canBack?: boolean;
 };
 
-export const Header = ({ title, backIcon }: HeaderProps) => {
+export const Header = ({ title, backIcon, canBack }: HeaderProps) => {
   return (
     <View style={styles.viewheader}>
-      <TouchableOpacity style={styles.close} onPress={() => goBack()}>
-        {backIcon}
-      </TouchableOpacity>
+      {canBack ? (
+        <TouchableOpacity style={styles.close} onPress={() => goBack()}>
+          {backIcon}
+        </TouchableOpacity>
+      ) : null}
+
       <TextApp preset="text18">{title}</TextApp>
     </View>
   );

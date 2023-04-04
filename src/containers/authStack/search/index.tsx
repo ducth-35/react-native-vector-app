@@ -9,16 +9,48 @@ import {
 import TextApp from "../../../components/textApp";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Search } from "../../../components/home/search";
-import { DataOutStand } from "../../../utils/mock-data";
+import { DataArtCenter, DataOutStand } from "../../../utils/mock-data";
 import { OutStandInterface } from "../../../types/outstand";
 import { CardOutStand } from "../../../components/card-outstand";
 import { HomeSVG } from "../../../assets";
 import { scale } from "../../../common/scale";
-import { goBack } from "../../../navigators/navigation-services";
+import { goBack, navigate } from "../../../navigators/navigation-services";
+import { APP_SCREEN } from "../../../navigators/screen-type";
+import { ArtCenterInterface } from "src/types/artCenter";
+import { CardArtCenter } from "../../../components/card-artcenter";
 
 export const SearchScreen = () => {
   const renderItem: ListRenderItem<OutStandInterface> = ({ item }) => {
     return <CardOutStand item={item} newStyle={styles.viewCardOutStand} />;
+  };
+
+  const renderListFooter = () => {
+    const renderItemArtCenter: ListRenderItem<ArtCenterInterface> = ({
+      item,
+    }) => {
+      return <CardArtCenter item={item} newStyle={styles.newStyle} />;
+    };
+    return (
+      <View style={styles.container}>
+        {/* <View style={styles.textHeader}> */}
+        <TextApp preset="text18" style={styles.title}>
+          Trung tâm năng khiếu
+        </TextApp>
+        {/* </View> */}
+        <View style={styles.viewListOutStand}>
+          <FlatList
+            data={DataArtCenter}
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItemArtCenter}
+            keyExtractor={(item) => item.name}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const handlePressFilter = () => {
+    navigate(APP_SCREEN.FILTER_SCREEN);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -31,9 +63,12 @@ export const SearchScreen = () => {
           <HomeSVG.BACK />
         </TouchableOpacity>
         <View style={styles.search}>
-          <Search />
+          <Search leftIcon={<HomeSVG.SEARCH />} />
         </View>
       </View>
+      <TouchableOpacity style={styles.filter} onPress={handlePressFilter}>
+        <HomeSVG.FILTER />
+      </TouchableOpacity>
       <View style={styles.viewListOutStand}>
         <TextApp preset="text18" style={styles.title}>
           Gia sư
@@ -43,6 +78,8 @@ export const SearchScreen = () => {
           showsHorizontalScrollIndicator={false}
           renderItem={renderItem}
           keyExtractor={(item) => item.name}
+          ListFooterComponent={renderListFooter()}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </SafeAreaView>
@@ -91,5 +128,15 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: scale(20),
     marginVertical: scale(10),
+  },
+  filter: {
+    paddingHorizontal: scale(20),
+    marginTop: scale(15),
+  },
+  newStyle: {
+    backgroundColor: "#f8f8ff",
+    marginHorizontal: scale(20),
+    marginTop: scale(10),
+    borderRadius: scale(12),
   },
 });

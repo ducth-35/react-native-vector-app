@@ -11,6 +11,7 @@ import { Calenda } from "../../../components/home/calenda";
 import { scale } from "../../../common/scale";
 import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
+import { HomeSVG } from "../../../assets";
 
 export const HomeScreen: FC = () => {
   const handleSearch = () => {
@@ -20,7 +21,12 @@ export const HomeScreen: FC = () => {
     <SafeAreaView style={styles.container}>
       <Header />
       <View style={styles.search}>
-        <Search onPressIn={handleSearch} editable={false} />
+        <Search
+          onPressIn={handleSearch}
+          editable={false}
+          leftIcon={<HomeSVG.SEARCH />}
+          rightIcon={<HomeSVG.FILTER />}
+        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
