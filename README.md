@@ -1,4 +1,4 @@
-# React Native TypeScript Template
+# React Native
 
 ## Description
 * Template react native typescript project with Redux, Saga, React Navigation.
