@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { scale } from "../../common/scale";
-import { HomeSVG } from "../../assets/icon/home/home-svg";
+import { HomeSVG } from "../../asset/icon/home/home-svg";
 import TextApp from "../textApp";
 
 export const Header = () => {

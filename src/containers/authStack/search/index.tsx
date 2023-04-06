@@ -12,7 +12,7 @@ import { Search } from "../../../components/home/search";
 import { DataArtCenter, DataOutStand } from "../../../utils/mock-data";
 import { OutStandInterface } from "../../../types/outstand";
 import { CardOutStand } from "../../../components/card-outstand";
-import { HomeSVG } from "../../../assets";
+import { HomeSVG } from "../../../asset";
 import { scale } from "../../../common/scale";
 import { goBack, navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
@@ -53,7 +53,7 @@ export const SearchScreen = () => {
     navigate(APP_SCREEN.FILTER_SCREEN);
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={["right", "left", "top"]} style={styles.container}>
       <View style={styles.viewSearch}>
         <TouchableOpacity
           hitSlop={{ top: 30, left: 30, right: 30, bottom: 30 }}
@@ -80,6 +80,7 @@ export const SearchScreen = () => {
           keyExtractor={(item) => item.name}
           ListFooterComponent={renderListFooter()}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: scale(50) }}
         />
       </View>
     </SafeAreaView>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { scale } from "../../common/scale";
-import { HomeSVG } from "../../assets";
+import { HomeSVG } from "../../asset";
 
 type SearchProps = {
   rightIcon?: JSX.Element;

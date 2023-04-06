@@ -1,4 +1,4 @@
-import { ImageAsset } from "../assets/image";
+import { ImageAsset } from "../asset/image";
 
 export const DataOutStand = [
   {
@@ -54,3 +54,17 @@ export const DataArtCenter = [
     image: ImageAsset.banner,
   },
 ];
+
+
+export const DAY = {
+  label: "Ngày học trong tuần",
+  item: [
+    "Thứ 2",
+    "Thứ 3",
+    "Thứ 4",
+    "Thứ 5",
+    "Thứ 6",
+    "Thứ 7",
+    "Chủ Nhật"
+  ],
+};

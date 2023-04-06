@@ -11,7 +11,7 @@ import { Calenda } from "../../../components/home/calenda";
 import { scale } from "../../../common/scale";
 import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
-import { HomeSVG } from "../../../assets";
+import { HomeSVG } from "@/asset";
 
 export const HomeScreen: FC = () => {
   const handleSearch = () => {

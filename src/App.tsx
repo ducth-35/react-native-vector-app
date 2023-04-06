@@ -11,6 +11,7 @@ import "react-native-gesture-handler";
 import rootReducer from "./redux-saga/reducers";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { setupCalendar } from "./utils/locales";
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -24,7 +25,7 @@ const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
 const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
-
+setupCalendar();
 const App = () => {
   return (
     <Provider store={store}>

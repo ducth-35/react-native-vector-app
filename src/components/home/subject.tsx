@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { scale } from "../../common/scale";
 import TextApp from "../textApp";
-import { HomeSVG } from "../../assets/icon/home/home-svg";
+import { HomeSVG } from "../../asset/icon/home/home-svg";
 
 const dataSubject = [
   {

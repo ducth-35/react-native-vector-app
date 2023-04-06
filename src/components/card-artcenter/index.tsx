@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import TextApp from "../textApp";
 import FastImage from "react-native-fast-image";
 import { scale } from "../../common/scale";
-import { HomeSVG } from "../../assets";
+import { HomeSVG } from "../../asset";
 import { ArtCenterInterface } from "../../types/artCenter";
 
 type Props = {

@@ -2,9 +2,9 @@ import React from "react";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
-import { scale } from "../../common/scale";
-import TextApp from "../textApp";
-import { HomeSVG } from "../../assets";
+import { scale } from "../../../common/scale";
+import TextApp from "../../textApp";
+import { HomeSVG } from "../../../asset";
 
 interface ModalizeFilterProps {
   data: {

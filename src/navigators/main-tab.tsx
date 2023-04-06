@@ -6,7 +6,7 @@ import { CalendaScreen } from "../containers/authStack/calenda-screen";
 import { ResultScreen } from "../containers/authStack/results-screen";
 import { PaymentScreen } from "../containers/authStack/payment-screen";
 import { AccountScreen } from "../containers/authStack/account-screen";
-import { IconAsset } from "../assets";
+import { IconAsset } from "../asset";
 import { APP_SCREEN } from "./screen-type";
 import { FontFamily } from "../common/constant";
 import { scale } from "../common/scale";

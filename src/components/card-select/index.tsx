@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { scale } from "../../common/scale";
 import TextApp from "../textApp";
-import { HomeSVG } from "../../assets";
+import { HomeSVG } from "../../asset";
 
 type CardSearchProps = {
   lable: string;

@@ -5,22 +5,24 @@ import { scale } from "../../common/scale";
 import { FontFamily } from "../../common/constant";
 
 type ButtonConfirmProps = {
-  textCancel: string;
-  textConfirm: string;
-  pressCancel: () => void;
+  textCancel?: string;
+  textConfirm?: string;
+  pressCancel?: () => void;
+  pressConfirrm?: () => void;
 };
 
 export const ButtonConfirm = ({
   textConfirm,
   textCancel,
   pressCancel,
+  pressConfirrm,
 }: ButtonConfirmProps) => {
   return (
     <View style={style.container}>
       <TouchableOpacity style={style.cancel} onPress={pressCancel}>
         <TextApp style={style.textcancel}>{textCancel}</TextApp>
       </TouchableOpacity>
-      <TouchableOpacity style={style.confirm}>
+      <TouchableOpacity style={style.confirm} onPress={pressConfirrm}>
         <TextApp style={style.textconfirm}>{textConfirm}</TextApp>
       </TouchableOpacity>
     </View>
@@ -40,7 +42,7 @@ const style = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "#3d5cff",
-    paddingVertical: scale(15),
+    paddingVertical: scale(10),
     marginRight: scale(10),
   },
   confirm: {
@@ -49,7 +51,7 @@ const style = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#3d5cff",
     borderRadius: 12,
-    paddingVertical: scale(15),
+    paddingVertical: scale(10),
   },
   textcancel: {
     color: "#3d5cff",

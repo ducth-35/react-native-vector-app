@@ -22,6 +22,7 @@ export const CalendaScreen: FC = () => {
           <TextApp preset="text18"> Lịch </TextApp>
         </View>
         <Calendar
+          locale={"vn"}
           initialDate={initialDate}
           markingType={"custom"}
           markedDates={{
@@ -29,7 +30,7 @@ export const CalendaScreen: FC = () => {
               selected: true,
               selectedColor: "#4d6eff",
               customContainerStyle: {
-                borderRadius: 3
+                borderRadius: 3,
               },
             },
           }}
