@@ -6,8 +6,15 @@ import { CardInforTutor } from "../../../components/card-infor-turtor";
 import { scale } from "../../../common/scale";
 import { ButtonConfirm } from "../../../components/button-confirm";
 import { goBack } from "../../../navigators/navigation-services";
+import { RouteBookingInforInterface } from "@/types/booking";
 
-export const BookingInfor = () => {
+type Props = {
+  route: RouteBookingInforInterface;
+};
+export const BookingInfor = ({ route }: Props) => {
+  const {
+    params: { day, startTime, endTime, dateStart, address, name, phone },
+  } = route;
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Thông tin đặt" />
@@ -18,17 +25,21 @@ export const BookingInfor = () => {
           description="Sinh viên năm 2 - Đại Học Ngoại Thương"
         />
         <CardInforTutor lable="Giá 1 buổi học" description="500.000 VNĐ" />
-        <CardInforTutor lable="Ngày học" description="Thứ 2 - Thứ 4 - Thứ 6" />
-        <CardInforTutor lable="Giờ học" description="18:30 - 19:30" />
-        <CardInforTutor lable="Ngày bắt đầu học" description="24/04/2023" />
-        <CardInforTutor lable="Học sinh" description="Trần Phương Linh" />
+        <CardInforTutor lable="Ngày học" description={day} />
         <CardInforTutor
-          lable="Địa chỉ"
-          description="C020 Chung Cư Vinhomes Liễu Giai, 16 Liễu Giai, Ba Đình, Hà Nội"
+          lable="Giờ học"
+          description={`${startTime} - ${endTime}`}
         />
+        <CardInforTutor lable="Ngày bắt đầu học" description={dateStart} />
+        <CardInforTutor lable="Học sinh" description={name} />
+        <CardInforTutor lable="Địa chỉ" description={address} />
       </ScrollView>
       <View style={styles.btn}>
-        <ButtonConfirm textConfirm={"Đặt lịch"} textCancel={"Huỷ"} pressCancel={() => goBack()}/>
+        <ButtonConfirm
+          textConfirm={"Đặt lịch"}
+          textCancel={"Huỷ"}
+          pressCancel={() => goBack()}
+        />
       </View>
     </SafeAreaView>
   );

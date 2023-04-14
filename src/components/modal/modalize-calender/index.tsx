@@ -6,22 +6,30 @@ import TextApp from "../../textApp";
 import { Calendar } from "react-native-calendars";
 import { FontFamily } from "@/common/constant";
 import { scale } from "@/common/scale";
-import moment from "moment";
+import moment, { Moment } from "moment";
+import { ButtonConfirm } from "@/components/button-confirm";
 
 type Props = {
   title?: string;
-  children?: JSX.Element;
+  pressCancel?: () => void;
+  onSave: (data: { dateStart: string }) => void;
 };
 
 const initialDate = moment().format("YYYY-MM-DD");
 
 export const ModalizeCalendar = React.forwardRef(
-  ({ title, children }: Props, ref) => {
+  ({ title, pressCancel, onSave }: Props, ref) => {
     const [selectedDate, setSelectedDate] = React.useState(initialDate);
 
     const onDayPress = (day: string) => {
       setSelectedDate(day);
     };
+
+    const pressConfirrm = () => {
+      const date = { dateStart: selectedDate };
+      onSave(date);
+    };
+    
     return (
       <Portal>
         <Modalize
@@ -69,7 +77,14 @@ export const ModalizeCalendar = React.forwardRef(
             }}
           />
           <View style={styles.line} />
-          {children}
+          <View style={styles.btn}>
+            <ButtonConfirm
+              textConfirm={"Tiếp tục"}
+              textCancel={"Huỷ"}
+              pressCancel={pressCancel}
+              pressConfirrm={pressConfirrm}
+            />
+          </View>
         </Modalize>
       </Portal>
     );
@@ -88,6 +103,10 @@ const styles = StyleSheet.create({
   line: {
     backgroundColor: "#d8d8d8",
     height: 1,
+    marginBottom: scale(30),
+  },
+  btn: {
+    marginHorizontal: scale(20),
     marginBottom: scale(30),
   },
 });

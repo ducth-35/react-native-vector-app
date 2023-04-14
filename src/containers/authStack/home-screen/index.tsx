@@ -30,7 +30,7 @@ export const HomeScreen: FC = () => {
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: scale(100) }}
+        contentContainerStyle={{ paddingBottom: scale(200) }}
       >
         <Subject />
         <Calenda />

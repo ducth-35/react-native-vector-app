@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeSVG } from "../../../asset";
 import { CardSelect } from "../../../components/card-select";
 import { scale } from "../../../common/scale";
-import { ModalizeFilter } from "../../../components/modal/Modalize-filter";
+import { ModalizeFilter } from "../../../components/modal/modalize-filter";
 import { Filter } from "../../../utils/enum";
 import { Header } from "../../../components/header";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -119,7 +119,7 @@ export const FilterScreen = () => {
     setSelectedSchoolItems([]);
   };
   return (
-    <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
+    <SafeAreaView edges={["right", "left", "top"]} style={styles.container}>
       <Header canBack title="Bộ lọc tìm kiếm" backIcon={<HomeSVG.CLOSE />} />
       <View>
         <CardSelect
@@ -181,7 +181,7 @@ export const FilterScreen = () => {
           <TextApp style={styles.textdelete}>Xoá</TextApp>
         </Pressable>
         <Pressable style={styles.done}>
-          <TextApp style={styles.textdone}>Hoàn thành khoá học</TextApp>
+          <TextApp style={styles.textdone}>Hoàn thành lọc</TextApp>
         </Pressable>
       </View>
       <ModalizeFilter

@@ -5,7 +5,7 @@ import { scale } from "../../common/scale";
 
 type CardInforTutor = {
   lable?: string;
-  description?: string;
+  description?: any;
 };
 
 export const CardInforTutor = ({ lable, description }: CardInforTutor) => {
@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
   },
   newText: {
     color: "#858597",
-    marginTop: scale(10)
+    marginTop: scale(10),
   },
 });

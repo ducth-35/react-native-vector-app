@@ -1,3 +1,4 @@
+import { BookingInforInterface } from "@/types/booking";
 import { NativeStackScreenProps as RNStackScreenProps } from "@react-navigation/native-stack";
 export enum APP_SCREEN {
   SPLASH = "SPLASH",
@@ -36,7 +37,7 @@ export type StackParamsList = {
   [APP_SCREEN.SEARCH_SCREEN]: undefined;
   [APP_SCREEN.FILTER_SCREEN]: undefined;
   [APP_SCREEN.TUTOR_DETAIL_SCREEN]: undefined;
-  [APP_SCREEN.BOOKING_SCREEN]: undefined;
+  [APP_SCREEN.BOOKING_SCREEN]: BookingInforInterface;
 };
 export type RootNativeStackParamList = StackParamsList;
 

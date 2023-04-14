@@ -1,11 +1,12 @@
+import { scale } from "@/common/scale";
 import React from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
-import { scale } from "../../common/scale";
-import { HomeSVG } from "../../asset";
 
 type SearchProps = {
   rightIcon?: JSX.Element;
   leftIcon?: JSX.Element;
+  onPressIn?: () => void;
+  editable?: boolean;
 };
 
 export const Search = ({ leftIcon, rightIcon, ...props }: SearchProps) => {

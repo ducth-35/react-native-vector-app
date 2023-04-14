@@ -14,13 +14,25 @@ import { ButtonConfirm } from "@/components/button-confirm";
 import { ModalizeSelectDay } from "@/components/modal/modal-select-day";
 import { DAY } from "@/utils/mock-data";
 import { Loading } from "@/components/loading-view";
+import { ModalizeAddInfor } from "@/components/modal/modalize-add-infor";
+import { navigate } from "@/navigators/navigation-services";
+import { APP_SCREEN } from "@/navigators/screen-type";
+import { ModalizeSelectTime } from "@/components/modal/modal-select-time";
+import { Moment } from "moment";
+import { BookingInforInterface } from "@/types/booking";
 
 export const TutorDetailScreen = () => {
   const [selectDay, setSelectDay] = React.useState<string[]>([]);
+  const [startTime, setStartTime] = React.useState<Moment>();
+  const [endTime, setEndTime] = React.useState<Moment>();
+  const [dateStart, setDateStart] = React.useState<string>();
+
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const modalizeCalendarRef = React.useRef<any>();
   const modalizeSelectDay = React.useRef<any>();
+  const modalizeAddInfor = React.useRef<any>();
+  const modalizeSelectTime = React.useRef<any>();
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -35,8 +47,51 @@ export const TutorDetailScreen = () => {
   const handleContinueSelectDay = () => {
     modalizeSelectDay.current.close();
     setTimeout(() => {
+      modalizeSelectTime.current.open();
+    }, 100);
+  };
+
+  const handleConfirmDateStart = (data: { dateStart: string }) => {
+    setDateStart(data.dateStart);
+    modalizeCalendarRef.current.close();
+    setTimeout(() => {
+      modalizeAddInfor.current.open();
+    }, 100);
+  };
+
+  const handleConfirmTime = (data: { startTime: Moment; endTime: Moment }) => {
+    setStartTime(data.startTime);
+    setEndTime(data.endTime);
+    modalizeSelectTime.current.close();
+    setTimeout(() => {
       modalizeCalendarRef.current.open();
     }, 100);
+  };
+
+  const handleConfirmInfor = (data: {
+    address: string;
+    name: string;
+    phone: string;
+  }) => {
+    const bookingInfo: BookingInforInterface = {
+      day: selectDay,
+      startTime: startTime,
+      endTime: endTime,
+      dateStart: dateStart,
+      address: data.address,
+      name: data.name,
+      phone: data.phone,
+    };
+    modalizeAddInfor.current.close();
+    navigate(APP_SCREEN.BOOKING_SCREEN, {
+      day: selectDay,
+      startTime: startTime,
+      endTime: endTime,
+      dateStart: dateStart,
+      address: data.address,
+      name: data.name,
+      phone: data.phone,
+    });
   };
 
   return (
@@ -111,18 +166,22 @@ export const TutorDetailScreen = () => {
         selectedItems={selectDay}
         setSelectedItems={setSelectDay}
       />
+      <ModalizeSelectTime
+        ref={modalizeSelectTime}
+        pressCancel={() => modalizeSelectTime.current?.close()}
+        onSave={handleConfirmTime}
+      />
       <ModalizeCalendar
         ref={modalizeCalendarRef}
         title="Ngày bắt đầu học"
-        children={
-          <View style={styles.btn}>
-            <ButtonConfirm
-              textConfirm={"Tiếp tục"}
-              textCancel={"Huỷ"}
-              pressCancel={() => modalizeCalendarRef.current.close()}
-            />
-          </View>
-        }
+        onSave={handleConfirmDateStart}
+        pressCancel={() => modalizeCalendarRef?.current?.close()}
+      />
+      <ModalizeAddInfor
+        ref={modalizeAddInfor}
+        title="Thông tin thêm"
+        pressCancel={() => modalizeAddInfor?.current?.close()}
+        onSave={handleConfirmInfor}
       />
     </SafeAreaView>
   );
