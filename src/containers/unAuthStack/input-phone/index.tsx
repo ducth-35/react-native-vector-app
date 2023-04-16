@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   textHeader1: {
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(28),
+    fontSize: 28,
     marginBottom: scale(10),
   },
   viewInput: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(16),
+    fontSize: 16,
   },
   btn: {
     marginTop: scale(50),

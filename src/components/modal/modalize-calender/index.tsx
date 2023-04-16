@@ -29,7 +29,7 @@ export const ModalizeCalendar = React.forwardRef(
       const date = { dateStart: selectedDate };
       onSave(date);
     };
-    
+
     return (
       <Portal>
         <Modalize
@@ -73,7 +73,7 @@ export const ModalizeCalendar = React.forwardRef(
               textMonthFontFamily: FontFamily.poppins_regular,
               arrowHeight: scale(30),
               arrowWidth: scale(30),
-              textDayHeaderFontSize: scale(12),
+              textDayHeaderFontSize: 12,
             }}
           />
           <View style={styles.line} />

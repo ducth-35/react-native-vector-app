@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   textHeader1: {
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(34),
+    fontSize: 34,
     marginBottom: scale(10),
   },
   viewInput: {

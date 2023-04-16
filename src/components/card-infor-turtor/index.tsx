@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
   },
   newText: {
     color: "#858597",
-    marginTop: scale(10),
+    marginTop: scale(5),
   },
 });

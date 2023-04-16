@@ -50,7 +50,7 @@ export const CalendaScreen: FC = () => {
             textMonthFontFamily: FontFamily.poppins_regular,
             arrowHeight: scale(30),
             arrowWidth: scale(30),
-            textDayHeaderFontSize: scale(12),
+            textDayHeaderFontSize: 12,
           }}
         />
       </View>

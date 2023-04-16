@@ -56,11 +56,11 @@ const style = StyleSheet.create({
   textcancel: {
     color: "#3d5cff",
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(16),
+    fontSize: 16,
   },
   textconfirm: {
     color: "#fff",
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(16),
+    fontSize: 16,
   },
 });

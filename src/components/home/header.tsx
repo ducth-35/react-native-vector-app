@@ -4,13 +4,17 @@ import { scale } from "../../common/scale";
 import { HomeSVG } from "../../asset/icon/home/home-svg";
 import TextApp from "../textApp";
 
-export const Header = () => {
+type Props = {
+  name?: string;
+};
+
+export const Header = ({ name }: Props) => {
   return (
     <View style={style.container}>
       <View style={style.viewname}>
         <HomeSVG.AVATAR_DEFAULT />
         <TextApp preset="headerHome" style={style.textName}>
-          Hi, Phạm Thị Ngọc An
+          Hi, {name}
         </TextApp>
       </View>
       <View>

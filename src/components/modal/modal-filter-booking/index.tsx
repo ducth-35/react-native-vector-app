@@ -14,42 +14,30 @@ interface ModalizeFilterProps {
   handleClose: () => void;
   selectedItems: string[];
   setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
-  isSchool?: boolean;
 }
 
-export const ModalizeFilter = React.forwardRef(
+export const ModalizeFilterBooking = React.forwardRef(
   (props: ModalizeFilterProps, ref) => {
-    const { data, handleClose, selectedItems, setSelectedItems, isSchool } =
-      props;
-    const [tempSelectedItems, setTempSelectedItems] =
-      React.useState<string[]>(selectedItems);
-
-    React.useEffect(() => {
-      setTempSelectedItems(selectedItems);
-    }, [selectedItems]);
+    const { data, handleClose, selectedItems, setSelectedItems } = props;
+    const [tempSelectedItems, setTempSelectedItems] = React.useState<string>(
+      selectedItems[0]
+    );
 
     const handleItemPress = (item: string) => {
-      setTempSelectedItems((prevSelectedItems) => {
-        if (prevSelectedItems.includes(item)) {
-          return prevSelectedItems.filter((i) => i !== item);
-        } else {
-          return [...prevSelectedItems, item];
-        }
-      });
+      setTempSelectedItems(item);
     };
 
     const handleSelectDone = () => {
-      setSelectedItems(tempSelectedItems);
+      setSelectedItems([tempSelectedItems]);
       handleClose();
     };
 
     const handleCloseModal = () => {
-      if (JSON.stringify(tempSelectedItems) !== JSON.stringify(selectedItems)) {
+      if (tempSelectedItems !== selectedItems[0]) {
         handleClose();
-        setTempSelectedItems(selectedItems);
-      } else {
-        handleClose();
+        setTempSelectedItems(selectedItems[0]);
       }
+      handleClose();
     };
 
     return (
@@ -72,53 +60,33 @@ export const ModalizeFilter = React.forwardRef(
             </TouchableOpacity>
             <TextApp preset="text18">{data.label}</TextApp>
           </View>
-          {isSchool ? (
-            <View>
-              {data.item.map((it) => (
-                <TouchableOpacity
-                  key={it}
-                  style={[styles.viewSchool]}
-                  onPress={() => handleItemPress(it)}
-                >
-                  <TextApp
-                    preset="text14"
-                    style={[
-                      styles.text,
-                      tempSelectedItems.includes(it) && styles.schoolSelected,
-                    ]}
-                  >
-                    {it}
-                  </TextApp>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ) : (
-            <View style={styles.viewBody}>
-              {data.item.map((it) => (
-                <TouchableOpacity
-                  key={it}
+          <View style={styles.viewBody}>
+            {data.item.map((it) => (
+              <TouchableOpacity
+                key={it}
+                style={[
+                  styles.body,
+                  tempSelectedItems === it && styles.selected,
+                ]}
+                onPress={() => handleItemPress(it)}
+              >
+                <TextApp
+                  preset="text12"
                   style={[
-                    styles.body,
-                    tempSelectedItems.includes(it) && styles.selected,
+                    styles.text,
+                    tempSelectedItems === it && styles.textSelected,
                   ]}
-                  onPress={() => handleItemPress(it)}
                 >
-                  <TextApp
-                    preset="text12"
-                    style={[
-                      styles.text,
-                      tempSelectedItems.includes(it) && styles.textSelected,
-                    ]}
-                  >
-                    {it}
-                  </TextApp>
-                </TouchableOpacity>
-              ))}
-            </View>
-          )}
+                  {it}
+                </TextApp>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* )} */}
 
           <Pressable style={styles.done} onPress={handleSelectDone}>
-            <TextApp style={styles.textdone}>Hoàn thành chọn</TextApp>
+            <TextApp style={styles.textdone}>Lọc</TextApp>
           </Pressable>
         </Modalize>
       </Portal>
@@ -174,14 +142,5 @@ const styles = StyleSheet.create({
   },
   textSelected: {
     color: "#fff",
-  },
-  viewSchool: {
-    alignItems: "center",
-    marginHorizontal: scale(5),
-    marginBottom: scale(20),
-    paddingHorizontal: scale(20),
-  },
-  schoolSelected: {
-    color: "#3d5cff",
   },
 });

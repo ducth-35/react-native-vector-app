@@ -1,17 +1,18 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { HomeScreen } from "../containers/authStack/home-screen";
-import { CalendaScreen } from "../containers/authStack/calenda-screen";
-import { ResultScreen } from "../containers/authStack/results-screen";
-import { PaymentScreen } from "../containers/authStack/payment-screen";
-import { AccountScreen } from "../containers/authStack/account-screen";
+import { HomeScreen } from "../containers/authStack/home";
+import { CalendaScreen } from "../containers/authStack/calenda";
+import { ResultScreen } from "../containers/authStack/results";
+import { PaymentScreen } from "../containers/authStack/payment";
+import { AccountScreen } from "../containers/authStack/account";
 import { IconAsset } from "../asset";
 import { APP_SCREEN } from "./screen-type";
-import { FontFamily } from "../common/constant";
 import { SCREEN_WIDTH, scale } from "../common/scale";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TextApp from "@/components/textApp";
+import { IncomeScreen } from "@/containers/authStack/income";
+import { HomeTutor } from "@/containers/authStack/home-tutor";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,8 @@ const BOTTOM_TAB_ROUTE = {
   CALENDA_SCREEN: "Lịch",
   RESULT_SCREEN: "Kết quả",
   PAYMENT_SCREEN: "Thanh toán",
-  ACCOUNT_SCREEN: "Account",
+  ACCOUNT_SCREEN: "Tài khoản",
+  INCOME_SCREEN: "Thu nhập",
 };
 const ColorActive = "#e83f3f";
 const ColorUnActive = "#858597";
@@ -52,6 +54,14 @@ const tabBarIcon = (focused: boolean, route: any) => {
         />
       );
     case BOTTOM_TAB_ROUTE.PAYMENT_SCREEN:
+      return (
+        <Image
+          source={IconAsset.payment}
+          style={[styles.icon, focused && styles.iconSelected]}
+          resizeMode={"cover"}
+        />
+      );
+    case BOTTOM_TAB_ROUTE.INCOME_SCREEN:
       return (
         <Image
           source={IconAsset.payment}
@@ -103,6 +113,13 @@ const tabBarLabel = (focused: boolean, route: any) => {
         </TextApp>
       );
     }
+    case BOTTOM_TAB_ROUTE.INCOME_SCREEN: {
+      return (
+        <TextApp style={[styles.label, { color: color }]}>
+          {BOTTOM_TAB_ROUTE.INCOME_SCREEN}
+        </TextApp>
+      );
+    }
     case BOTTOM_TAB_ROUTE.ACCOUNT_SCREEN: {
       return (
         <TextApp style={[styles.label, { color: color }]}>
@@ -149,6 +166,8 @@ const MyTabBar = ({ state, navigation }: any) => {
 };
 
 export const MainTab = () => {
+  const [istutor, setIstutor] = React.useState(false);
+  const [isTutor, setIsTutor] = React.useState(true);
   return (
     <Tab.Navigator
       initialRouteName={APP_SCREEN.HOME_SCREEN}
@@ -157,7 +176,10 @@ export const MainTab = () => {
       })}
       tabBar={(props: any) => <MyTabBar {...props} />}
     >
-      <Tab.Screen name={BOTTOM_TAB_ROUTE.HOME_SCREEN} component={HomeScreen} />
+      <Tab.Screen
+        name={BOTTOM_TAB_ROUTE.HOME_SCREEN}
+        component={isTutor ? HomeTutor : HomeScreen}
+      />
       <Tab.Screen
         name={BOTTOM_TAB_ROUTE.CALENDA_SCREEN}
         component={CalendaScreen}
@@ -166,10 +188,18 @@ export const MainTab = () => {
         name={BOTTOM_TAB_ROUTE.RESULT_SCREEN}
         component={ResultScreen}
       />
-      <Tab.Screen
-        name={BOTTOM_TAB_ROUTE.PAYMENT_SCREEN}
-        component={PaymentScreen}
-      />
+      {istutor ? (
+        <Tab.Screen
+          name={BOTTOM_TAB_ROUTE.INCOME_SCREEN}
+          component={IncomeScreen}
+        />
+      ) : (
+        <Tab.Screen
+          name={BOTTOM_TAB_ROUTE.PAYMENT_SCREEN}
+          component={PaymentScreen}
+        />
+      )}
+
       <Tab.Screen
         name={BOTTOM_TAB_ROUTE.ACCOUNT_SCREEN}
         component={AccountScreen}

@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   time: {
     color: "#3d5cff",
-    fontSize: scale(16),
+    fontSize: 16,
   },
   selecttime: {
     flex: 1,

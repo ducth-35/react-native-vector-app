@@ -7,11 +7,11 @@ import { Subject } from "../../../components/home/subject";
 import { OutstandTutor } from "../../../components/home/oustand-tutor";
 import { ArtCenter } from "../../../components/home/art-center";
 import { ScrollView, View } from "react-native";
-import { Calenda } from "../../../components/home/calenda";
 import { scale } from "../../../common/scale";
 import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
 import { HomeSVG } from "@/asset";
+import { NextCalenda } from "@/components/home-tutor/next-calenda";
 
 export const HomeScreen: FC = () => {
   const handleSearch = () => {
@@ -19,7 +19,7 @@ export const HomeScreen: FC = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header name={"Phạm Ngọc An"} />
       <View style={styles.search}>
         <Search
           onPressIn={handleSearch}
@@ -33,7 +33,7 @@ export const HomeScreen: FC = () => {
         contentContainerStyle={{ paddingBottom: scale(200) }}
       >
         <Subject />
-        <Calenda />
+        <NextCalenda />
         <OutstandTutor />
         <ArtCenter />
       </ScrollView>

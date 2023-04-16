@@ -18,6 +18,7 @@ import { goBack, navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
 import { ArtCenterInterface } from "src/types/artCenter";
 import { CardArtCenter } from "../../../components/card-artcenter";
+import { HIT_SLOP } from "@/utils/helper";
 
 export const SearchScreen = () => {
   const renderItem: ListRenderItem<OutStandInterface> = ({ item }) => {
@@ -56,7 +57,7 @@ export const SearchScreen = () => {
     <SafeAreaView edges={["right", "left", "top"]} style={styles.container}>
       <View style={styles.viewSearch}>
         <TouchableOpacity
-          hitSlop={{ top: 30, left: 30, right: 30, bottom: 30 }}
+          hitSlop={HIT_SLOP}
           style={styles.viewBack}
           onPress={() => goBack()}
         >

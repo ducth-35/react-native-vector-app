@@ -7,15 +7,19 @@ import { InputNumberScreen } from "../containers/unAuthStack/input-phone";
 import { VerifyNumberScreen } from "../containers/unAuthStack/verifycations";
 import { SelectAccountType } from "../containers/unAuthStack/select-account-type";
 import { MainTab } from "./main-tab";
-import { HomeScreen } from "../containers/authStack/home-screen";
-import { CalendaScreen } from "../containers/authStack/calenda-screen";
-import { ResultScreen } from "../containers/authStack/results-screen";
-import { PaymentScreen } from "../containers/authStack/payment-screen";
-import { AccountScreen } from "../containers/authStack/account-screen";
+import { HomeScreen } from "../containers/authStack/home";
+import { CalendaScreen } from "../containers/authStack/calenda";
+import { ResultScreen } from "../containers/authStack/results";
+import { PaymentScreen } from "../containers/authStack/payment";
+import { AccountScreen } from "../containers/authStack/account";
 import { SearchScreen } from "../containers/authStack/search";
 import { FilterScreen } from "../containers/authStack/filter";
 import { TutorDetailScreen } from "../containers/authStack/tutor-details";
 import { BookingInfor } from "../containers/authStack/book-infor";
+import { PaymentDetails } from "@/containers/authStack/payment-details";
+import { PaymentGuide } from "@/containers/payment-guide";
+import { CalendaParentDetailsScreen } from "@/containers/authStack/calenda-parent-details";
+import { BookingInforTutor } from "@/containers/authStack/booking-infor-tutor";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,9 +67,23 @@ const AppStack = () => {
         name={APP_SCREEN.TUTOR_DETAIL_SCREEN}
         component={TutorDetailScreen}
       />
-        <Stack.Screen
-        name={APP_SCREEN.BOOKING_SCREEN}
-        component={BookingInfor}
+      <Stack.Screen name={APP_SCREEN.BOOKING_SCREEN} component={BookingInfor} />
+      <Stack.Screen
+        name={APP_SCREEN.PAYMENT_DETAIL_SCREEN}
+        component={PaymentDetails}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.PAYMENT_GUIDE_SCREEN}
+        component={PaymentGuide}
+        options={{ presentation: "transparentModal" }}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.CALENDA_PARENT_DETAIL_SCREEN}
+        component={CalendaParentDetailsScreen}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.BOOKING_INFOR_TUTOR_SCREEN}
+        component={BookingInforTutor}
       />
     </Stack.Navigator>
   );

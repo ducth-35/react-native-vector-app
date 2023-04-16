@@ -15,7 +15,7 @@ import { HomeSVG } from "../../asset";
 type Props = {
   item: OutStandInterface;
   newStyle: ViewStyle;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 export const CardOutStand = ({ item, newStyle, onPress }: Props) => {

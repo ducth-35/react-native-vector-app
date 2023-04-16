@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   textHeader1: {
     fontFamily: FontFamily.poppins_regular,
-    fontSize: scale(34),
+    fontSize: 34,
     marginBottom: scale(10),
   },
   btn: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   cellText: {
     color: "#000",
-    fontSize: scale(30),
+    fontSize: 30,
     textAlign: "center",
   },
   focusCell: {
