@@ -1,8 +1,8 @@
 import { scale } from "@/common/scale";
 import { CalendaFromParent } from "@/components/home-tutor/calenda-from-parent";
 import { NextCalenda } from "@/components/home-tutor/next-calenda";
-import { TotalIncome } from "@/components/home-tutor/total-income";
 import { Header } from "@/components/home/header";
+import { TotalIncome } from "@/components/total-income";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

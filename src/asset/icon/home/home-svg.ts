@@ -17,6 +17,8 @@ import DROPDOWN from "./ic-dropdown.svg";
 import FILTER from "./ic-filter.svg";
 import SEARCH from "./icon-search.svg";
 import CLOSE_INPUT from "./icon-close-input.svg";
+import NEXT from "./next.svg";
+import INFOR from "./infor.svg";
 
 export const HomeSVG = {
   TOAN,
@@ -37,4 +39,6 @@ export const HomeSVG = {
   FILTER,
   SEARCH,
   CLOSE_INPUT,
+  NEXT,
+  INFOR,
 };

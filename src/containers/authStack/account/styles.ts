@@ -1,3 +1,4 @@
+import { scale } from "@/common/scale";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -5,4 +6,5 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+  body: {},
 });

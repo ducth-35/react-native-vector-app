@@ -18,18 +18,7 @@ export const textPresets = StyleSheet.create({
     fontSize: 14,
     color: "#fff",
   },
-  text16White: {
-    fontFamily: FontFamily.poppins_medium,
-    fontSize: 16,
-    color: "#fff",
-  },
   headerHome: {
-    fontFamily: FontFamily.poppins_regular,
-    fontSize: 18,
-    fontWeight: "400",
-    color: "#1f1f39",
-  },
-  text18: {
     fontFamily: FontFamily.poppins_regular,
     fontSize: 18,
     fontWeight: "400",
@@ -83,10 +72,38 @@ export const textPresets = StyleSheet.create({
     fontWeight: "400",
     color: "#1f1f39",
   },
+  text16White: {
+    fontFamily: FontFamily.poppins_medium,
+    fontSize: 16,
+    color: "#fff",
+  },
+  text16Blue: {
+    fontFamily: FontFamily.poppins_medium,
+    fontSize: 16,
+    color: "#3d5cff",
+  },
+  text18: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: 18,
+    fontWeight: "400",
+    color: "#1f1f39",
+  },
   text18BlueBold: {
     fontFamily: FontFamily.poppins_bold,
     fontSize: 18,
     fontWeight: "700",
+    color: "#3d5cff",
+  },
+  text18BlackBold: {
+    fontFamily: FontFamily.poppins_bold,
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#000",
+  },
+  text18BlueNormal: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: 18,
+    fontWeight: "400",
     color: "#3d5cff",
   },
   text14NormalBlue: {

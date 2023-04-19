@@ -68,7 +68,9 @@ const renderDay = (day: any, index: any) => {
   const isToday = today === today + index;
   return (
     <View key={index} style={styles.viewCalendar}>
-      <TextApp style={[styles.dayText]}>{day}</TextApp>
+      <View>
+        <TextApp style={[styles.dayText]}>{day}</TextApp>
+      </View>
       <View style={[styles.marginTop, isToday && styles.today]}>
         <TextApp style={[styles.dateText, isToday && styles.textToday]}>
           {today + index}
@@ -92,7 +94,7 @@ export const NextCalenda = () => {
           {DAYS.map((day, index) => renderDay(day, index))}
         </View>
         <FlatList
-          data={[]}
+          data={data}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={renderItem}
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 20,
-    marginTop: scale(30),
+    marginVertical: scale(30),
   },
   header: {
     flexDirection: "row",
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: scale(10),
     marginTop: scale(10),
   },
-  viewCalendar: { justifyContent: "center", alignItems: "center" },
+  viewCalendar: { alignItems: "center" },
   calendar: {
     backgroundColor: "#f4f3fd",
     borderRadius: scale(10),

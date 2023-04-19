@@ -3,7 +3,6 @@ import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 import { StyleSheet, View } from "react-native";
 import TextApp from "@/components/textApp";
-import { ButtonConfirm } from "@/components/button-confirm";
 import { scale } from "@/common/scale";
 
 type Props = {

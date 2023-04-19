@@ -13,6 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import TextApp from "@/components/textApp";
 import { IncomeScreen } from "@/containers/authStack/income";
 import { HomeTutor } from "@/containers/authStack/home-tutor";
+import { TeachingClass } from "@/containers/authStack/teaching-class";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,7 @@ const BOTTOM_TAB_ROUTE = {
   PAYMENT_SCREEN: "Thanh toán",
   ACCOUNT_SCREEN: "Tài khoản",
   INCOME_SCREEN: "Thu nhập",
+  TEACHING_SCREEN: "Lớp dạy",
 };
 const ColorActive = "#e83f3f";
 const ColorUnActive = "#858597";
@@ -77,6 +79,14 @@ const tabBarIcon = (focused: boolean, route: any) => {
           resizeMode={"cover"}
         />
       );
+    case BOTTOM_TAB_ROUTE.TEACHING_SCREEN:
+      return (
+        <Image
+          source={IconAsset.teaching}
+          style={[styles.icon, focused && styles.iconSelected]}
+          resizeMode={"cover"}
+        />
+      );
     default:
       break;
   }
@@ -127,6 +137,13 @@ const tabBarLabel = (focused: boolean, route: any) => {
         </TextApp>
       );
     }
+    case BOTTOM_TAB_ROUTE.TEACHING_SCREEN: {
+      return (
+        <TextApp style={[styles.label, { color: color }]}>
+          {BOTTOM_TAB_ROUTE.TEACHING_SCREEN}
+        </TextApp>
+      );
+    }
   }
 };
 
@@ -166,8 +183,8 @@ const MyTabBar = ({ state, navigation }: any) => {
 };
 
 export const MainTab = () => {
-  const [istutor, setIstutor] = React.useState(false);
-  const [isTutor, setIsTutor] = React.useState(true);
+  const [istutor, setIstutor] = React.useState(true);
+  const [isTutor, setIsTutor] = React.useState(false);
   return (
     <Tab.Navigator
       initialRouteName={APP_SCREEN.HOME_SCREEN}
@@ -184,10 +201,18 @@ export const MainTab = () => {
         name={BOTTOM_TAB_ROUTE.CALENDA_SCREEN}
         component={CalendaScreen}
       />
-      <Tab.Screen
-        name={BOTTOM_TAB_ROUTE.RESULT_SCREEN}
-        component={ResultScreen}
-      />
+      {istutor ? (
+        <Tab.Screen
+          name={BOTTOM_TAB_ROUTE.TEACHING_SCREEN}
+          component={TeachingClass}
+        />
+      ) : (
+        <Tab.Screen
+          name={BOTTOM_TAB_ROUTE.RESULT_SCREEN}
+          component={ResultScreen}
+        />
+      )}
+
       {istutor ? (
         <Tab.Screen
           name={BOTTOM_TAB_ROUTE.INCOME_SCREEN}
