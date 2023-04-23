@@ -19,6 +19,8 @@ import SEARCH from "./icon-search.svg";
 import CLOSE_INPUT from "./icon-close-input.svg";
 import NEXT from "./next.svg";
 import INFOR from "./infor.svg";
+import CAMERA from "./camera.svg";
+import PLUS from "./plus.svg";
 
 export const HomeSVG = {
   TOAN,
@@ -41,4 +43,6 @@ export const HomeSVG = {
   CLOSE_INPUT,
   NEXT,
   INFOR,
+  CAMERA,
+  PLUS,
 };

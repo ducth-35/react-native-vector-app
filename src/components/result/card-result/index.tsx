@@ -1,7 +1,9 @@
 import { scale } from "@/common/scale";
 import TextApp from "@/components/textApp";
+// import { navigate } from "@/navigators/navigation-services";
+// import { APP_SCREEN } from "@/navigators/screen-type";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 type Props = {
   item: {
@@ -13,14 +15,18 @@ type Props = {
 };
 
 export const CardResult = ({ item }: Props) => {
+  const handleShowDetails = () => {};
   return (
-    <View style={[styles.item, { backgroundColor: item.color }]}>
+    <Pressable
+      style={[styles.item, { backgroundColor: item.color }]}
+      onPress={handleShowDetails}
+    >
       <View>{item.icon}</View>
-      <View style={styles.flex_1}>
+      <View style={styles.contentContainer}>
         <TextApp preset="text14">{item.name}</TextApp>
-        <TextApp preset="text14">Gia sư: {item.name}</TextApp>
+        <TextApp preset="text14">Gia sư: {item.teacher}</TextApp>
       </View>
-    </View>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({
@@ -31,8 +37,8 @@ const styles = StyleSheet.create({
     borderRadius: scale(12),
     padding: scale(15),
   },
-  flex_1: {
+  contentContainer: {
     flex: 1,
-    marginLeft: scale(15),
+    marginLeft: scale(20),
   },
 });

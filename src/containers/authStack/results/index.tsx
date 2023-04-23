@@ -65,6 +65,14 @@ const renderItemLatest = (item: any) => {
   return <CardLatestResult item={item.item} />;
 };
 
+const renderHeaderList = () => {
+  return (
+    <TextApp preset="text18BlueNormal" style={{ marginBottom: scale(10) }}>
+      Kết quả gần nhất
+    </TextApp>
+  );
+};
+
 export const ResultScreen: FC = () => {
   const renderListFooter = () => {
     return (
@@ -75,14 +83,7 @@ export const ResultScreen: FC = () => {
           showsHorizontalScrollIndicator={false}
           renderItem={renderItemLatest}
           keyExtractor={(item: any) => item.name}
-          ListHeaderComponent={
-            <TextApp
-              preset="text18BlueNormal"
-              style={{ marginBottom: scale(10) }}
-            >
-              Kết quả gần nhất
-            </TextApp>
-          }
+          ListHeaderComponent={renderHeaderList}
         />
       </View>
     );

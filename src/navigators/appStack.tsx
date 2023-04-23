@@ -17,9 +17,13 @@ import { FilterScreen } from "../containers/authStack/filter";
 import { TutorDetailScreen } from "../containers/authStack/tutor-details";
 import { BookingInfor } from "../containers/authStack/book-infor";
 import { PaymentDetails } from "@/containers/authStack/payment-details";
-import { PaymentGuide } from "@/containers/payment-guide";
+import { PaymentGuide } from "@/containers/authStack/payment-guide";
 import { CalendaParentDetailsScreen } from "@/containers/authStack/calenda-parent-details";
 import { BookingInforTutor } from "@/containers/authStack/booking-infor-tutor";
+import { RegisterInforParent } from "@/containers/unAuthStack/infor-parent";
+import { RegisterInforTutor } from "@/containers/unAuthStack/infor-tutor";
+import { ResultsLatest } from "@/containers/authStack/results-latest";
+import { LeaningOutcomes } from "@/containers/authStack/learning-outcomes";
 
 const Stack = createNativeStackNavigator();
 
@@ -84,6 +88,22 @@ const AppStack = () => {
       <Stack.Screen
         name={APP_SCREEN.BOOKING_INFOR_TUTOR_SCREEN}
         component={BookingInforTutor}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.REGISTER_INFOR_TUTOR_SCREEN}
+        component={RegisterInforParent}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.REGISTER_INFOR_PARENT_SCREEN}
+        component={RegisterInforTutor}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.RESULT_LATEST_SCREEN}
+        component={ResultsLatest}
+      />
+      <Stack.Screen
+        name={APP_SCREEN.LEARNING_OUTCOMES_SCREEN}
+        component={LeaningOutcomes}
       />
     </Stack.Navigator>
   );

@@ -4,9 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Header } from "@/components/header";
 import TextApp from "@/components/textApp";
 import { View } from "react-native";
-import { TutorOptions } from "./tutor-options";
+import { TutorOptions } from "./account-options";
+import { ParentsOptions } from "./parents-options";
 
 export const AccountScreen: FC = () => {
+  const isTutor = false;
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -15,7 +17,7 @@ export const AccountScreen: FC = () => {
         rightIcon={<TextApp preset="text16Blue">Sửa</TextApp>}
       />
       <View style={styles.body}>
-        <TutorOptions />
+        {isTutor ? <TutorOptions /> : <ParentsOptions />}
       </View>
     </SafeAreaView>
   );

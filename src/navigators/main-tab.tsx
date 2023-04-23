@@ -183,7 +183,7 @@ const MyTabBar = ({ state, navigation }: any) => {
 };
 
 export const MainTab = () => {
-  const [istutor, setIstutor] = React.useState(true);
+  const [istutor, setIstutor] = React.useState(false);
   const [isTutor, setIsTutor] = React.useState(false);
   return (
     <Tab.Navigator

@@ -7,7 +7,7 @@ import { goBack } from "../../navigators/navigation-services";
 import { HIT_SLOP } from "@/utils/helper";
 
 type HeaderProps = {
-  title: string;
+  title?: string;
   backIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   canBack?: boolean;

@@ -3,13 +3,13 @@ import { ImageAsset } from "@/asset/image";
 import { scale } from "@/common/scale";
 import TextApp from "@/components/textApp";
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import FastImage from "react-native-fast-image";
 
 const options = [
   {
     id: 0,
-    name: "Quản lý cài đặt",
+    name: "Quản lý lịch đặt",
     icon: <HomeSVG.INFOR />,
     rightIcon: <HomeSVG.NEXT />,
   },
@@ -126,6 +126,5 @@ const styles = StyleSheet.create({
     fontSize: scale(14),
     paddingLeft: scale(16),
     fontWeight: "400",
-    color: "#red",
   },
 });

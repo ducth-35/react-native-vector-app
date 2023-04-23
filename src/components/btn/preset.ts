@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export const ButtonPresets = StyleSheet.create({
   default: {
-    backgroundColor: "#D64D47",
+    backgroundColor: "#e83f3f",
     minWidth: "100%",
     minHeight: scale(45),
     paddingHorizontal: scale(10),

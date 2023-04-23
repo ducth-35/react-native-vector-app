@@ -1,8 +1,10 @@
 import { HomeSVG } from "@/asset";
 import { scale } from "@/common/scale";
 import { Header } from "@/components/header";
+import { LoadingView } from "@/components/loading-view";
 import { CardResult } from "@/components/result/card-result";
 import TextApp from "@/components/textApp";
+import { useGetTeachingClassTutor } from "@/services/tutor";
 import React from "react";
 import { SectionList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -59,24 +61,37 @@ const renderHeader = ({ section: { title } }: any) => (
 );
 
 export const TeachingClass = () => {
+  const { data, loading } = useGetTeachingClassTutor();
   return (
-    <SafeAreaView style={styles.ccontainer}>
+    <SafeAreaView style={styles.container}>
       <Header title="Lớp học" />
-      <SectionList
-        sections={DATA}
-        keyExtractor={(item: any, index: any) => item + index}
-        renderItem={renderItem}
-        renderSectionHeader={renderHeader}
-        contentContainerStyle={{
-          marginHorizontal: scale(15),
-          marginTop: scale(20),
-        }}
-        stickySectionHeadersEnabled={false}
-      />
+      <View style={styles.contentContainer}>
+        {loading ? (
+          <LoadingView />
+        ) : (
+          <SectionList
+            sections={DATA}
+            keyExtractor={(item: any, index: any) => item + index}
+            renderItem={renderItem}
+            renderSectionHeader={renderHeader}
+            contentContainerStyle={{
+              marginHorizontal: scale(15),
+              marginTop: scale(20),
+            }}
+            stickySectionHeadersEnabled={false}
+          />
+        )}
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  ccontainer: {},
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
 });

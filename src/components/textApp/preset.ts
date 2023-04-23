@@ -77,6 +77,11 @@ export const textPresets = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
   },
+  text16Red: {
+    fontFamily: FontFamily.poppins_medium,
+    fontSize: 16,
+    color: "#e83f3f",
+  },
   text16Blue: {
     fontFamily: FontFamily.poppins_medium,
     fontSize: 16,
@@ -117,6 +122,12 @@ export const textPresets = StyleSheet.create({
     fontSize: 12,
     fontWeight: "400",
     color: "#3d5cff",
+  },
+  text34BlueNormal: {
+    fontFamily: FontFamily.poppins_regular,
+    fontSize: 34,
+    fontWeight: "400",
+    color: "#000",
   },
 });
 

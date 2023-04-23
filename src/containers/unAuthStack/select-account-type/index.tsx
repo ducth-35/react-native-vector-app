@@ -36,7 +36,12 @@ export const SelectAccountType = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate(APP_SCREEN.MAIN_TAB);
+      if (tabSelect.find((item) => item.id === 1)?.checked) {
+        navigate(APP_SCREEN.REGISTER_INFOR_TUTOR_SCREEN);
+      } else {
+        navigate(APP_SCREEN.REGISTER_INFOR_PARENT_SCREEN);
+      }
+      // navigate(APP_SCREEN.MAIN_TAB);
     }, 1500);
   };
 
