@@ -1,0 +1,3 @@
+interface RouteVerify {
+  phone?: string;
+}

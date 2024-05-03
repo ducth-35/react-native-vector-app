@@ -45,14 +45,14 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>887759752280162</string>
 	<key>FacebookClientToken</key>
 	<string>74682b52085cdc714925e089b22c3c31</string>
 	<key>FacebookDisplayName</key>
 	<string>Vector</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -66,8 +66,32 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Your camera is used to capture images you can set as your profile picture</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your photo library is used to set a profile picture.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFUIText-Bold.ttf</string>
+		<string>SFUIText-BoldItalic.ttf</string>
+		<string>SFUIText-Heavy.ttf</string>
+		<string>SFUIText-HeavyItalic.ttf</string>
+		<string>SFUIText-Light.ttf</string>
+		<string>SFUIText-LightItalic.ttf</string>
+		<string>SFUIText-Medium.ttf</string>
+		<string>SFUIText-MediumItalic.ttf</string>
+		<string>SFUIText-Regular.ttf</string>
+		<string>SFUIText-RegularItalic.ttf</string>
+		<string>SFUIText-Semibold.ttf</string>
+		<string>SFUIText-SemiboldItalic.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -82,42 +106,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>AntDesign.ttf</string>
-		<string>Entypo.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Feather.ttf</string>
-		<string>FontAwesome.ttf</string>
-		<string>FontAwesome5_Brands.ttf</string>
-		<string>FontAwesome5_Regular.ttf</string>
-		<string>FontAwesome5_Solid.ttf</string>
-		<string>Fontisto.ttf</string>
-		<string>Foundation.ttf</string>
-		<string>Ionicons.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>Octicons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Zocial.ttf</string>
-		<string>Poppins-Black.ttf</string>
-		<string>Poppins-BlackItalic.ttf</string>
-		<string>Poppins-Bold.ttf</string>
-		<string>Poppins-BoldItalic.ttf</string>
-		<string>Poppins-ExtraBold.ttf</string>
-		<string>Poppins-ExtraBoldItalic.ttf</string>
-		<string>Poppins-ExtraLight.ttf</string>
-		<string>Poppins-ExtraLightItalic.ttf</string>
-		<string>Poppins-Italic.ttf</string>
-		<string>Poppins-Light.ttf</string>
-		<string>Poppins-LightItalic.ttf</string>
-		<string>Poppins-Medium.ttf</string>
-		<string>Poppins-MediumItalic.ttf</string>
-		<string>Poppins-Regular.ttf</string>
-		<string>Poppins-SemiBold.ttf</string>
-		<string>Poppins-SemiBoldItalic.ttf</string>
-		<string>Poppins-Thin.ttf</string>
-		<string>Poppins-ThinItalic.ttf</string>
-	</array>
 </dict>
 </plist>

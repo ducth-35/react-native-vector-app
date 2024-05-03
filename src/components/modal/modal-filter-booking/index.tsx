@@ -6,10 +6,14 @@ import { scale } from "../../../common/scale";
 import TextApp from "../../textApp";
 import { HomeSVG } from "../../../asset";
 
+type StatusInterface = {
+  name: string;
+  status: string;
+};
 interface ModalizeFilterProps {
   data: {
     label: string;
-    item: string[];
+    item: StatusInterface[];
   };
   handleClose: () => void;
   selectedItems: string[];
@@ -23,8 +27,8 @@ export const ModalizeFilterBooking = React.forwardRef(
       selectedItems[0]
     );
 
-    const handleItemPress = (item: string) => {
-      setTempSelectedItems(item);
+    const handleItemPress = (status: string) => {
+      setTempSelectedItems(status);
     };
 
     const handleSelectDone = () => {
@@ -36,8 +40,9 @@ export const ModalizeFilterBooking = React.forwardRef(
       if (tempSelectedItems !== selectedItems[0]) {
         handleClose();
         setTempSelectedItems(selectedItems[0]);
+      } else {
+        handleClose();
       }
-      handleClose();
     };
 
     return (
@@ -50,6 +55,9 @@ export const ModalizeFilterBooking = React.forwardRef(
             display: "none",
           }}
           closeOnOverlayTap={false}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false
+          }}
         >
           <View style={styles.container}>
             <TouchableOpacity
@@ -63,28 +71,25 @@ export const ModalizeFilterBooking = React.forwardRef(
           <View style={styles.viewBody}>
             {data.item.map((it) => (
               <TouchableOpacity
-                key={it}
+                key={it.status}
                 style={[
                   styles.body,
-                  tempSelectedItems === it && styles.selected,
+                  tempSelectedItems === it.status && styles.selected,
                 ]}
-                onPress={() => handleItemPress(it)}
+                onPress={() => handleItemPress(it.status)}
               >
                 <TextApp
                   preset="text12"
                   style={[
                     styles.text,
-                    tempSelectedItems === it && styles.textSelected,
+                    tempSelectedItems === it.status && styles.textSelected,
                   ]}
                 >
-                  {it}
+                  {it.name}
                 </TextApp>
               </TouchableOpacity>
             ))}
           </View>
-
-          {/* )} */}
-
           <Pressable style={styles.done} onPress={handleSelectDone}>
             <TextApp style={styles.textdone}>Lọc</TextApp>
           </Pressable>

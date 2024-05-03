@@ -21,6 +21,13 @@ import NEXT from "./next.svg";
 import INFOR from "./infor.svg";
 import CAMERA from "./camera.svg";
 import PLUS from "./plus.svg";
+import BOOKING_SUCCESS from "./booking-success.svg";
+import PAYMENT from "./paymentNotiIc.svg";
+import PROFIT from "./profitIc.svg";
+import REMINDER from "./reminderNotiIc.svg";
+import RESULT from "./resultNotiIc.svg";
+import START_CLASS from "./startClassIc.svg";
+import TIME from "./timeIc.svg";
 
 export const HomeSVG = {
   TOAN,
@@ -45,4 +52,11 @@ export const HomeSVG = {
   INFOR,
   CAMERA,
   PLUS,
+  BOOKING_SUCCESS,
+  PAYMENT,
+  PROFIT,
+  REMINDER,
+  RESULT,
+  START_CLASS,
+  TIME
 };

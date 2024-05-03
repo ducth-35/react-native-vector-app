@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+    paddingVertical: scale(10),
   },
   close: {
     position: "absolute",

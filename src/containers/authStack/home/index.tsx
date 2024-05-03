@@ -11,17 +11,18 @@ import { scale } from "../../../common/scale";
 import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
 import { HomeSVG } from "@/asset";
-import { NextCalenda } from "@/components/home-tutor/next-calenda";
+import { NextCalenda } from "@/components/next-calendar";
 
 export const HomeScreen: FC = () => {
   const handleSearch = () => {
-    navigate(APP_SCREEN.SEARCH_SCREEN);
+    navigate(APP_SCREEN.SEARCH_SCREEN, {});
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header name={"Phạm Ngọc An"} />
+      <Header />
       <View style={styles.search}>
         <Search
+          placeholder="Tìm gia sư, lớp năng khiếu..."
           onPressIn={handleSearch}
           editable={false}
           leftIcon={<HomeSVG.SEARCH />}
@@ -30,7 +31,7 @@ export const HomeScreen: FC = () => {
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: scale(200) }}
+        contentContainerStyle={{ paddingBottom: scale(250) }}
       >
         <Subject />
         <NextCalenda />

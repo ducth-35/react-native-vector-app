@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import TextApp from "../textApp";
 import { scale } from "../../common/scale";
 import { FontFamily } from "../../common/constant";
@@ -9,21 +16,43 @@ type ButtonConfirmProps = {
   textConfirm?: string;
   pressCancel?: () => void;
   pressConfirrm?: () => void;
+  isLoading?: boolean;
+  disabled?: boolean;
+  newstyle?: ViewStyle;
+  newtext?: TextStyle;
 };
 
 export const ButtonConfirm = ({
+  isLoading,
   textConfirm,
   textCancel,
   pressCancel,
   pressConfirrm,
+  disabled,
+  newstyle,
+  newtext,
 }: ButtonConfirmProps) => {
   return (
     <View style={style.container}>
       <TouchableOpacity style={style.cancel} onPress={pressCancel}>
-        <TextApp style={style.textcancel}>{textCancel}</TextApp>
+        {isLoading ? (
+          <ActivityIndicator color={"#3d5cff"} />
+        ) : (
+          <TextApp style={style.textcancel}>{textCancel}</TextApp>
+        )}
       </TouchableOpacity>
-      <TouchableOpacity style={style.confirm} onPress={pressConfirrm}>
-        <TextApp style={style.textconfirm}>{textConfirm}</TextApp>
+      <TouchableOpacity
+        disabled={disabled}
+        style={[style.confirm, disabled && newstyle]}
+        onPress={pressConfirrm}
+      >
+        {isLoading ? (
+          <ActivityIndicator color={"#fff"} />
+        ) : (
+          <TextApp style={[style.textconfirm, disabled && newtext]}>
+            {textConfirm}
+          </TextApp>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -55,12 +84,12 @@ const style = StyleSheet.create({
   },
   textcancel: {
     color: "#3d5cff",
-    fontFamily: FontFamily.poppins_regular,
+    fontFamily: FontFamily.SFUIText_regular,
     fontSize: 16,
   },
   textconfirm: {
     color: "#fff",
-    fontFamily: FontFamily.poppins_regular,
+    fontFamily: FontFamily.SFUIText_regular,
     fontSize: 16,
   },
 });

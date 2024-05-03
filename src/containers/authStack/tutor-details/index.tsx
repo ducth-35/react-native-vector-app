@@ -1,188 +1,168 @@
-import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import TextApp from "@/components/textApp";
-import { Header } from "@/components/header";
 import { HomeSVG } from "@/asset";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { scale } from "@/common/scale";
-import FastImage from "react-native-fast-image";
-import { ImageAsset } from "@/asset/image";
-import { CardInforTutor } from "@/components/card-infor-turtor";
+import { SCREEN_HEIGHT, scale } from "@/common/scale";
 import { Button } from "@/components/btn";
-import { ModalizeCalendar } from "@/components/modal/modalize-calender";
-import { ButtonConfirm } from "@/components/button-confirm";
-import { ModalizeSelectDay } from "@/components/modal/modal-select-day";
-import { DAY } from "@/utils/mock-data";
-import { Loading } from "@/components/loading-view";
-import { ModalizeAddInfor } from "@/components/modal/modalize-add-infor";
+import { CardFeedBackItem } from "@/components/card-feedback";
+import { CardInforTutor } from "@/components/card-infor-turtor";
+import { Header } from "@/components/header";
+import TextApp from "@/components/textApp";
 import { navigate } from "@/navigators/navigation-services";
 import { APP_SCREEN } from "@/navigators/screen-type";
-import { ModalizeSelectTime } from "@/components/modal/modal-select-time";
-import { Moment } from "moment";
-import { BookingInforInterface } from "@/types/booking";
+import { getDetailsTutor } from "@/services/home";
+import { useGetRating } from "@/services/tutor";
+import { authenStateSelector } from "@/store/auth/authSelector";
+import { formatCurrency, formatNumber } from "@/utils/helper";
+import { isNullOrEmpty } from "@/utils/method";
+import { isUndefined } from "lodash";
+import React from "react";
+import {
+  FlatList,
+  ListRenderItem,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
+import FastImage from "react-native-fast-image";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 
-export const TutorDetailScreen = () => {
-  const [selectDay, setSelectDay] = React.useState<string[]>([]);
-  const [startTime, setStartTime] = React.useState<Moment>();
-  const [endTime, setEndTime] = React.useState<Moment>();
-  const [dateStart, setDateStart] = React.useState<string>();
+export const TutorDetailScreen = (props: any) => {
+  const { id } = props?.route?.params;
+  const isSignIn = useSelector(authenStateSelector);
+  const { ratings } = useGetRating(id);
 
-  const [loading, setLoading] = React.useState<boolean>(true);
-
-  const modalizeCalendarRef = React.useRef<any>();
-  const modalizeSelectDay = React.useRef<any>();
-  const modalizeAddInfor = React.useRef<any>();
-  const modalizeSelectTime = React.useRef<any>();
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  const { state } = getDetailsTutor(id);
+  console.log(state.data?.literacyImages);
 
   const handleBooking = () => {
-    modalizeSelectDay.current.open();
+    if (isSignIn) {
+      navigate(APP_SCREEN.BOOKING_SCREEN, {
+        name: state?.data?.fullName,
+        subjects: state?.data?.subject,
+        schoolName: state?.data?.school,
+        tutorId: state?.data?.userId,
+      });
+    } else {
+      navigate(APP_SCREEN.INPUT_NUMBER_SCREEN, { isLogin: false });
+    }
   };
 
-  const handleContinueSelectDay = () => {
-    modalizeSelectDay.current.close();
-    setTimeout(() => {
-      modalizeSelectTime.current.open();
-    }, 100);
-  };
-
-  const handleConfirmDateStart = (data: { dateStart: string }) => {
-    setDateStart(data.dateStart);
-    modalizeCalendarRef.current.close();
-    setTimeout(() => {
-      modalizeAddInfor.current.open();
-    }, 100);
-  };
-
-  const handleConfirmTime = (data: { startTime: Moment; endTime: Moment }) => {
-    setStartTime(data.startTime);
-    setEndTime(data.endTime);
-    modalizeSelectTime.current.close();
-    setTimeout(() => {
-      modalizeCalendarRef.current.open();
-    }, 100);
-  };
-
-  const handleConfirmInfor = (data: {
-    address: string;
-    name: string;
-    phone: string;
-  }) => {
-    const bookingInfo: BookingInforInterface = {
-      day: selectDay,
-      startTime: startTime,
-      endTime: endTime,
-      dateStart: dateStart,
-      address: data.address,
-      name: data.name,
-      phone: data.phone,
-    };
-    modalizeAddInfor.current.close();
-    navigate(APP_SCREEN.BOOKING_SCREEN, {
-      day: selectDay,
-      startTime: startTime,
-      endTime: endTime,
-      dateStart: dateStart,
-      address: data.address,
-      name: data.name,
-      phone: data.phone,
-    });
-  };
-
+  const renderItemFeedBack: ListRenderItem<RatingResponseItem> = ({
+    item,
+    index,
+  }) => <CardFeedBackItem item={item} index={index} />;
   return (
     <SafeAreaView style={styles.container}>
       <Header canBack title="Giáo viên" backIcon={<HomeSVG.BACK />} />
-      {!loading ? (
-        <>
-          <ScrollView>
-            <View style={styles.viewBanner}>
-              <HomeSVG.BANNER_TUTOR />
-              <View style={styles.viewAvatar}>
-                <FastImage source={ImageAsset.person} style={styles.avatar} />
-              </View>
-            </View>
-            <View style={styles.viewBody}>
-              <View style={styles.viewName}>
-                <TextApp preset="text20">Trương Huỳnh Đức</TextApp>
-                <TextApp preset="text20Blue">500k / buổi</TextApp>
-              </View>
-              <View style={styles.viewStar}>
-                <HomeSVG.STAR />
-                <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
-                  4.5
-                </TextApp>
-                <View style={styles.viewSubjec}>
-                  {["Toán", "Lý"].map((it) => (
-                    <View key={it} style={styles.viewItemSubjec}>
-                      <TextApp preset="text10" style={{ color: "#ff6905" }}>
-                        {it}
-                      </TextApp>
-                    </View>
-                  ))}
-                </View>
-              </View>
-              <View>
-                <CardInforTutor
-                  lable="Giới thiệu"
-                  description="Gia sư Phạm Trần Phương đã có kinh nghiệm 2 năm dạy học các bạn cấp 1. Liên tiếp là sinh viên xuất sắc cũng như đạt nhiều toán quốc gia trong nhiều năm liền."
-                />
-                <CardInforTutor
-                  lable="Trường"
-                  description="Sinh viên năm 2 - Đại Học Ngoại Thương"
-                />
-                <CardInforTutor
-                  lable="Lớp dạy"
-                  description="Chuyên gia sư từ lớp 1 - lớp 6"
-                />
-                <CardInforTutor
-                  lable="Thành tích"
-                  description="Giải nhì toán quốc gia 2018 - Giải ba nghiên cứu khoa học Đại học Ngoại Thương"
-                />
-              </View>
-            </View>
-          </ScrollView>
-          <View style={styles.viewDone}>
-            <Button
-              preset="blue"
-              title="Đặt lịch học"
-              onPress={handleBooking}
-            />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: scale(50) }}
+      >
+        <View style={styles.viewBanner}>
+          <HomeSVG.BANNER_TUTOR />
+          <View style={styles.viewAvatar}>
+            {isNullOrEmpty(state?.data?.avatar) ? (
+              <HomeSVG.AVATAR_DEFAULT width={scale(52)} height={scale(52)} />
+            ) : (
+              <FastImage
+                source={{ uri: state?.data?.avatar }}
+                style={styles.avatar}
+              />
+            )}
           </View>
-        </>
-      ) : (
-        <Loading />
-      )}
-
-      <ModalizeSelectDay
-        ref={modalizeSelectDay}
-        data={DAY}
-        handleClose={() => modalizeSelectDay.current.close()}
-        handleOpenNewModal={handleContinueSelectDay}
-        selectedItems={selectDay}
-        setSelectedItems={setSelectDay}
-      />
-      <ModalizeSelectTime
-        ref={modalizeSelectTime}
-        pressCancel={() => modalizeSelectTime.current?.close()}
-        onSave={handleConfirmTime}
-      />
-      <ModalizeCalendar
-        ref={modalizeCalendarRef}
-        title="Ngày bắt đầu học"
-        onSave={handleConfirmDateStart}
-        pressCancel={() => modalizeCalendarRef?.current?.close()}
-      />
-      <ModalizeAddInfor
-        ref={modalizeAddInfor}
-        title="Thông tin thêm"
-        pressCancel={() => modalizeAddInfor?.current?.close()}
-        onSave={handleConfirmInfor}
-      />
+        </View>
+        <View style={styles.viewBody}>
+          <View style={styles.viewName}>
+            <TextApp preset="text20">{state?.data?.fullName}</TextApp>
+            <View style={styles.viewStar}>
+              <HomeSVG.STAR />
+              <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
+                {formatNumber(state?.data?.rating || 0)}
+              </TextApp>
+            </View>
+          </View>
+          <View style={styles.viewSubjec}>
+            {state?.data?.subject.map((it) => (
+              <View key={it.subjectId} style={styles.viewItemSubjec}>
+                <TextApp preset="text10" style={{ color: "#ff6905" }}>
+                  {it.subjectName} - {formatCurrency(Number(it.price))}/buổi
+                </TextApp>
+              </View>
+            ))}
+          </View>
+          <View>
+            <CardInforTutor
+              lable="Giới thiệu"
+              description={
+                isNullOrEmpty(state?.data?.introduction)
+                  ? "Chưa có giới thiệu"
+                  : state?.data?.introduction
+              }
+            />
+            <CardInforTutor lable="Trường" description={state?.data?.school} />
+            {/* <CardInforTutor
+              lable="Lớp dạy"
+              description="Chuyên gia sư từ lớp 1 - lớp 6"
+            /> */}
+            <CardInforTutor
+              lable="Kinh nghiệm dạy học"
+              description={
+                isNullOrEmpty(state?.data?.experience)
+                  ? "Chưa có kinh nghiệm"
+                  : state?.data?.experience + " dạy học"
+              }
+            />
+            <CardInforTutor
+              lable="Số học sinh đã dạy"
+              description={
+                isNullOrEmpty(state?.data?.numberOfStudent)
+                  ? "Chưa có học sinh nào"
+                  : state?.data?.numberOfStudent + " học sinh"
+              }
+            />
+            <CardInforTutor
+              lable="Phương pháp dạy"
+              description={
+                isNullOrEmpty(state?.data?.teachingMethod)
+                  ? "Chưa có phương pháp dạy học"
+                  : state?.data?.teachingMethod
+              }
+            />
+            <View style={{ marginTop: scale(10) }}>
+              <TextApp preset="text16">Thành tích </TextApp>
+              {!isUndefined(state.data) &&
+              !isUndefined(state.data?.literacyImages) &&
+              !isNullOrEmpty(state?.data?.literacyImages) ? (
+                state?.data?.literacyImages.map((item, index) => (
+                  <View key={index + "achievement"}>
+                    <FastImage
+                      source={{ uri: item.url }}
+                      style={styles.viewAchievementImage}
+                    />
+                  </View>
+                ))
+              ) : (
+                <View></View>
+              )}
+            </View>
+          </View>
+        </View>
+        <View style={{ marginTop: scale(10) }}>
+          <TextApp preset="text16" style={{ marginHorizontal: scale(20) }}>
+            Nhận xét từ phụ huynh
+          </TextApp>
+          <FlatList
+            data={ratings}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={renderItemFeedBack}
+            keyExtractor={(item: any) => item.id}
+          />
+        </View>
+      </ScrollView>
+      <View style={styles.viewDone}>
+        <Button preset="blue" title="Đặt lịch học" onPress={handleBooking} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -190,6 +170,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "space-between",
   },
   viewBanner: {
     justifyContent: "center",
@@ -201,13 +182,12 @@ const styles = StyleSheet.create({
     zIndex: 9,
     bottom: -scale(40),
     left: "50%",
-    marginLeft: -50, // Điều chỉnh giá trị này bằng một nửa độ rộng của viewAvatar
+    marginLeft: -50,
     justifyContent: "center",
     alignItems: "center",
     width: scale(100),
     height: scale(100),
     backgroundColor: "#d9dfff",
-    // opacity: 0.7,
     borderRadius: scale(12),
     borderWidth: 1,
     borderColor: "#fff",
@@ -223,33 +203,39 @@ const styles = StyleSheet.create({
   },
   viewName: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
   },
   viewStar: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: scale(10),
+    marginLeft: scale(10),
   },
   viewSubjec: {
     flexDirection: "row",
-    marginLeft: scale(10),
+    marginTop: scale(10),
+    flexWrap: "wrap",
+    alignItems: "flex-start",
   },
   viewItemSubjec: {
     backgroundColor: "#ffebf0",
     marginRight: scale(5),
+    marginBottom: scale(10),
     paddingVertical: scale(2),
     paddingHorizontal: scale(10),
-    borderRadius: scale(5),
+    borderRadius: scale(2),
   },
   viewDone: {
-    position: "absolute",
-    left: scale(20),
-    right: scale(20),
-    bottom: scale(40),
+    marginHorizontal: scale(20),
+    marginBottom: scale(10),
   },
   btn: {
     marginHorizontal: scale(20),
     marginBottom: scale(30),
+  },
+  viewAchievementImage: {
+    backgroundColor: "#f2f2f2",
+    height: SCREEN_HEIGHT / 4,
+    marginVertical: scale(10),
+    borderRadius: scale(10),
   },
 });

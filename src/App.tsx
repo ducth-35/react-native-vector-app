@@ -1,43 +1,32 @@
 import React from "react";
-import createSagaMiddleware from "redux-saga";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { applyMiddleware, createStore } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
+import { StyleSheet } from "react-native";
+import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import SplashScreen from "react-native-splash-screen";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import rootSaga from "./redux-saga/sagas";
 import RootContainer from "./navigators/appContainer";
-import "react-native-gesture-handler";
-import rootReducer from "./redux-saga/reducers";
-import { ActivityIndicator, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { persitStorage, rootStore } from "./store/rootStore";
 import { setupCalendar } from "./utils/locales";
+import { ModalUpdateApp } from "./components/modal/modal-update-app";
 
-const sagaMiddleware = createSagaMiddleware();
-const persistConfig = {
-  key: "root",
-  storage: AsyncStorage,
-  whitelist: [],
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-const persistor = persistStore(store);
-
-sagaMiddleware.run(rootSaga);
-setupCalendar();
 const App = () => {
+  React.useEffect(() => {
+    setupCalendar();
+    SplashScreen.hide();
+  }, []);
   return (
-    <Provider store={store}>
-      <PersistGate
-        loading={<ActivityIndicator color={"red"} />}
-        persistor={persistor}
-      >
-        <GestureHandlerRootView style={styles.root}>
-          <RootContainer />
-        </GestureHandlerRootView>
-      </PersistGate>
-    </Provider>
+    <SafeAreaProvider>
+      <Provider store={rootStore}>
+        <PersistGate persistor={persitStorage}>
+          <GestureHandlerRootView style={styles.root}>
+            <RootContainer />
+          </GestureHandlerRootView>
+        </PersistGate>
+      </Provider>
+      <ModalUpdateApp/>
+    </SafeAreaProvider>
   );
 };
 

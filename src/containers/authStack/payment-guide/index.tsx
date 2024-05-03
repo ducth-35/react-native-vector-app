@@ -3,11 +3,18 @@ import { SCREEN_WIDTH, scale } from "@/common/scale";
 import { Button } from "@/components/btn";
 import { Header } from "@/components/header";
 import TextApp from "@/components/textApp";
+import { navigate } from "@/navigators/navigation-services";
+import { APP_SCREEN } from "@/navigators/screen-type";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const PaymentGuide = () => {
+
+  const handleOnPressOk = () => {
+    navigate(APP_SCREEN.HOME_SCREEN);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Header canBack title="Lớp Toán - Mỹ An" backIcon={<HomeSVG.CLOSE />} />
@@ -38,9 +45,6 @@ export const PaymentGuide = () => {
           Ngân hàng <TextApp style={styles.text16_black}>BIDV</TextApp>
         </TextApp>
         <TextApp>Công ty cổ phần Vector edu</TextApp>
-      </View>
-      <View style={styles.btn}>
-        <Button title="Ok" preset="blue" />
       </View>
     </SafeAreaView>
   );

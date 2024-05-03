@@ -6,60 +6,93 @@ import TextApp from "../../../components/textApp";
 import { Button } from "../../../components/btn";
 import { navigate } from "../../../navigators/navigation-services";
 import { APP_SCREEN } from "../../../navigators/screen-type";
+import { ScrollView } from "react-native-gesture-handler";
+import { isNullOrEmpty } from "@/utils/method";
+import { authAction } from "@/store/auth/authSlice";
+import { dispatch } from "@/common/redux";
+import { scale } from "@/common/scale";
+import { register } from "@/store/auth/middleware/auth.action";
+import { useSelector } from "react-redux";
+import {
+  authLoadingSelector,
+  selectDeviceToken,
+} from "@/store/auth/authSelector";
+
+type TabSelectInterface = {
+  id: number;
+  key: string;
+  lable: string;
+  checked: boolean;
+};
 
 const TabSelect = [
   {
     id: 1,
-    key: "parents",
+    key: "parent",
     lable: " Phụ huynh",
     checked: true,
   },
   {
     id: 2,
-    key: "teacher",
+    key: "tutor",
     lable: " Giáo viên",
     checked: false,
   },
 ];
 
-export const SelectAccountType = () => {
-  const [tabSelect, setTabSelect] = React.useState(TabSelect);
-  const [loading, setLoading] = React.useState<boolean>(false);
+export const SelectAccountType = (props: any) => {
+  const { phone, password, confirmPassword } = props?.route?.params;
+  const isLoading = useSelector(authLoadingSelector);
+  const deviceToken = useSelector(selectDeviceToken);
 
-  const handleSelected = (item: any) => {
+  const [tabSelect, setTabSelect] = React.useState(TabSelect);
+  const [name, setName] = React.useState<string>("");
+  const [role, setRole] = React.useState<string>(tabSelect[0].key);
+
+  const handleSelected = (item: TabSelectInterface) => {
     setTabSelect(
       tabSelect.map((it) => ({ ...it, checked: it.id === item.id }))
     );
+    setRole(item?.key);
   };
 
   const handleRegister = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      if (tabSelect.find((item) => item.id === 1)?.checked) {
-        navigate(APP_SCREEN.REGISTER_INFOR_TUTOR_SCREEN);
-      } else {
-        navigate(APP_SCREEN.REGISTER_INFOR_PARENT_SCREEN);
-      }
-      // navigate(APP_SCREEN.MAIN_TAB);
-    }, 1500);
+    dispatch(
+      register({
+        fullName: name,
+        phone: phone,
+        password: password,
+        confirmPassword: confirmPassword,
+        deviceToken: deviceToken,
+        role: role,
+      })
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.viewHeader}>
-        <TextApp style={styles.textHeader1}>Tài khoản</TextApp>
-        <TextApp>Nhập tên của bạn và chọn loại tài khoản sử dụng.</TextApp>
-      </View>
-      <View style={styles.viewInputName}>
-        <TextApp style={styles.textLableName}>Tên bạn</TextApp>
-        <View style={styles.viewInput}>
-          <TextInput placeholder="Nhập tên của bạn" style={styles.inputName} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: scale(100) }}
+      >
+        <View style={styles.viewHeader}>
+          <TextApp style={styles.textHeader1}>Tài khoản</TextApp>
+          <TextApp style={{ color: "#000" }}>
+            Nhập tên của bạn và chọn loại tài khoản sử dụng.
+          </TextApp>
         </View>
-      </View>
-      <View style={styles.viewSeclectAccount}>
-        <TextApp>Chọn loại tài khoản</TextApp>
-        <View>
+        <View style={styles.viewInputName}>
+          <TextApp style={styles.textLableName}>Tên bạn</TextApp>
+          <View style={styles.viewInput}>
+            <TextInput
+              placeholder="Nhập tên của bạn"
+              style={styles.inputName}
+              onChangeText={(value) => setName(value)}
+            />
+          </View>
+        </View>
+        <View style={styles.viewSeclectAccount}>
+          <TextApp>Chọn loại tài khoản</TextApp>
           {tabSelect.map((item: any, index: number) => (
             <TouchableOpacity
               key={index}
@@ -83,11 +116,12 @@ export const SelectAccountType = () => {
             </TouchableOpacity>
           ))}
         </View>
-      </View>
+      </ScrollView>
       <View style={styles.viewDone}>
         <Button
+          disabled={isNullOrEmpty(name) ? true : false}
           title="Hoàn thành"
-          isLoading={loading}
+          isLoading={isLoading}
           onPress={handleRegister}
         />
       </View>

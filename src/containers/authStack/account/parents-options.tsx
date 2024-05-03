@@ -1,34 +1,42 @@
 import { HomeSVG } from "@/asset";
-import { ImageAsset } from "@/asset/image";
+import { SettingsSVG } from "@/asset/icon/account";
+// import { ImageAsset } from "@/asset/image";
 import { scale } from "@/common/scale";
+import { AvatarAccount } from "@/components/avatar-account";
 import TextApp from "@/components/textApp";
+import { navigate } from "@/navigators/navigation-services";
+import { APP_SCREEN } from "@/navigators/screen-type";
+import { userInforSelector } from "@/store/auth/authSelector";
+import { OPTION_HAPTIC, USER_TYPE } from "@/utils/enum";
+import { HIT_SLOP } from "@/utils/helper";
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { useSelector } from "react-redux";
 
 const options = [
   {
     id: 0,
     name: "Quản lý đặt lịch",
-    icon: <HomeSVG.INFOR />,
+    icon: <SettingsSVG.CALENDAR />,
     rightIcon: <HomeSVG.NEXT />,
   },
   {
     id: 1,
     name: "Quản lý lớp học của con",
-    icon: <HomeSVG.INFOR />,
+    icon: <SettingsSVG.CLASS />,
     rightIcon: <HomeSVG.NEXT />,
   },
   {
     id: 2,
     name: "Tài khoản vợ/chồng",
-    icon: <HomeSVG.INFOR />,
+    icon: <SettingsSVG.MATE />,
     rightIcon: <HomeSVG.NEXT />,
   },
   {
     id: 3,
     name: "Tài khoản các con",
-    icon: <HomeSVG.INFOR />,
+    icon: <SettingsSVG.CHILDREN />,
     rightIcon: <HomeSVG.NEXT />,
   },
   {
@@ -40,7 +48,7 @@ const options = [
   {
     id: 5,
     name: "Đăng xuất",
-    icon: <HomeSVG.INFOR />,
+    icon: <SettingsSVG.LOGOUT />,
     rightIcon: null,
   },
   {
@@ -58,43 +66,118 @@ type OptionItemsProps = {
     icon: JSX.Element;
     rightIcon: JSX.Element | null;
   };
-  // handlePress: (value: number) => void;
-  // index: number;
+  handleLogout: () => void;
+  handleDelete: () => void;
 };
 
-export const ParentsOptions = () => {
-  return (
-    <View style={styles.container}>
+type Props = {
+  logout?: () => void;
+  delete?: () => void;
+};
+
+export const ParentsOptions = ({
+  logout: logoutCallable,
+  delete: deleteCallable,
+}: Props) => {
+  const user = useSelector(userInforSelector);
+
+  const handleEditAccount = () => {
+    if (user?.role === USER_TYPE.TUTOR) {
+      navigate(APP_SCREEN.ACCOUNT_TUTOR_DETAILS_SCREEN);
+    } else {
+      navigate(APP_SCREEN.ACCOUNT_PARENT_DETAILS_SCREEN);
+    }
+  };
+
+  const handleLogout = () => {
+    logoutCallable?.();
+  };
+
+  const handleDelete = () => {
+    deleteCallable?.();
+  };
+
+  const renderInfor = React.useCallback(() => {
+    return (
       <View style={styles.body}>
-        <TouchableOpacity style={styles.viewAvatar}>
-          <FastImage source={ImageAsset.person} style={styles.avatar} />
-          <View style={styles.viewCamera}>
-            <HomeSVG.CAMERA />
-          </View>
-        </TouchableOpacity>
+        <AvatarAccount source={user?.avatar} onPress={handleEditAccount} />
         <TextApp preset="text18BlackBold" style={{ marginTop: scale(15) }}>
-          Trương Huỳnh Đức
+          {user?.fullName}
         </TextApp>
         <TextApp preset="text16" style={{ marginVertical: scale(5) }}>
-          0988616818 - phuong_tran@gmail.com
+          {user?.phoneNumber}
+        </TextApp>
+        <TextApp preset="text16" style={{ marginVertical: scale(5) }}>
+          {user?.email}
         </TextApp>
         <TextApp preset="text14Medium" style={styles.text_align}>
-          C020 Chung Cư Vinhomes Liễu Giai, 16 Liễu Giai, Ba Đình, Hà Nội
+          {user?.location}
         </TextApp>
       </View>
+    );
+  }, [user]);
+
+  return (
+    <View style={styles.container}>
+      {renderInfor()}
       <View style={{ marginTop: scale(30) }}>
         {options.map((item, index) => (
-          <OptionItems data={item} key={item.id} />
+          <OptionItems
+            data={item}
+            key={item.id}
+            handleLogout={handleLogout}
+            handleDelete={handleDelete}
+          />
         ))}
       </View>
     </View>
   );
 };
 
-const OptionItems = ({ data }: OptionItemsProps) => {
-  const { rightIcon, icon, name } = data;
+const OptionItems = ({
+  data,
+  handleLogout,
+  handleDelete,
+}: OptionItemsProps) => {
+  const { id, rightIcon, icon, name } = data;
+
+  const handlePress = React.useCallback((id: number) => {
+    RNReactNativeHapticFeedback.trigger("contextClick", OPTION_HAPTIC);
+    switch (id) {
+      case 0:
+        navigate(APP_SCREEN.CALENDA_PARENT_DETAIL_SCREEN, {
+          title: "Quản lý đặt lịch",
+        });
+        break;
+      case 1:
+        navigate(APP_SCREEN.TEACHING_SCREEN, { isParent: true });
+        break;
+      case 2:
+        navigate(APP_SCREEN.HUSBAND_WIFE_ACCOUNT_SCREEN);
+        break;
+      case 3:
+        navigate(APP_SCREEN.CHILDREN_ACCOUNT_SCREEN);
+        break;
+      case 4:
+        navigate(APP_SCREEN.INFOR_APPLICATION_SCREEN);
+        break;
+      case 5:
+        handleLogout();
+        break;
+      case 6:
+        handleDelete();
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   return (
-    <TouchableOpacity style={[styles.itemAccount]}>
+    <TouchableOpacity
+      style={[styles.itemAccount]}
+      onPress={handlePress.bind(null, id)}
+      hitSlop={HIT_SLOP}
+    >
       <View style={styles.itemLeft}>
         <View style={styles.iconItem}>{icon}</View>
         <TextApp style={styles.textItem}>{name}</TextApp>
@@ -109,24 +192,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: scale(20),
   },
-  viewAvatar: {
-    width: scale(80),
-    height: scale(80),
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "red",
-    borderRadius: scale(50),
-  },
-  avatar: {
-    width: scale(80),
-    height: scale(80),
-    borderRadius: scale(50),
-  },
-  viewCamera: {
-    position: "absolute",
-    top: 1,
-    right: scale(5),
-  },
   itemAccount: {
     flexDirection: "row",
     marginVertical: 6,
@@ -140,7 +205,6 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: scale(20),
   },
   iconItem: {
     alignSelf: "center",
@@ -150,6 +214,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textItem: {
+    color: "#000",
     textAlign: "center",
     lineHeight: scale(28),
     fontSize: scale(14),

@@ -1,0 +1,3 @@
+interface RouteCreatePassword {
+  phone?: string;
+}

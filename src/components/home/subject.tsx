@@ -1,53 +1,46 @@
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { scale } from "../../common/scale";
+import { FlatList, ListRenderItem, Pressable, View } from "react-native";
 import TextApp from "../textApp";
-import { HomeSVG } from "../../asset/icon/home/home-svg";
-
-const dataSubject = [
-  {
-    name: "Toán",
-    icon: <HomeSVG.TOAN />,
-  },
-  {
-    name: "Lý",
-    icon: <HomeSVG.LY />,
-  },
-  {
-    name: "Hoá",
-    icon: <HomeSVG.HOA />,
-  },
-  {
-    name: "Vẽ",
-    icon: <HomeSVG.VE />,
-  },
-  {
-    name: "Piano",
-    icon: <HomeSVG.PIANO />,
-  },
-  {
-    name: "Guitar",
-    icon: <HomeSVG.GITA />,
-  },
-  {
-    name: "Nhảy - múa",
-    icon: <HomeSVG.MUA />,
-  },
-  {
-    name: "Violin",
-    icon: <HomeSVG.VIOLIN />,
-  },
-];
+import { homeApi } from "@/network/api/homeApi";
+import { RESPONSE_CODE } from "@/network/config";
+import FastImage from "react-native-fast-image";
+import { Skeleton } from "./skeleton";
+import { style } from "../../common/style";
+import { navigate } from "@/navigators/navigation-services";
+import { APP_SCREEN } from "@/navigators/screen-type";
 
 export const Subject = () => {
-  const renderItem = ({ item }: any) => {
+  const [subjects, setSubjects] = React.useState<dataSubjectsInterface[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    const res = await homeApi.getSubjects();
+    if (res?.status === RESPONSE_CODE.SUCCESS) {
+      setSubjects(res?.data?.data);
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleOnPressSubject = (subjectName?: string) => {
+    navigate(APP_SCREEN.SEARCH_SCREEN, { subject: subjectName });
+  };
+
+  const renderItem: ListRenderItem<dataSubjectsInterface> = ({ item }) => {
     return (
-      <View style={style.item}>
-        {item.icon}
-        <TextApp preset="text14" style={style.name}>
+      <Pressable
+        style={style.item}
+        onPress={() => handleOnPressSubject(item.name)}
+      >
+        <FastImage source={{ uri: item?.image }} style={style.image} />
+        <TextApp preset="text14" style={style.name} numberOfLines={2}>
           {item.name}
         </TextApp>
-      </View>
+      </Pressable>
     );
   };
   return (
@@ -56,29 +49,12 @@ export const Subject = () => {
         Môn học
       </TextApp>
       <FlatList
-        data={dataSubject}
+        data={subjects}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item: any) => item.id}
       />
     </View>
   );
 };
-const style = StyleSheet.create({
-  container: {
-    marginBottom: scale(20),
-  },
-  title: {
-    marginHorizontal: scale(20),
-  },
-  item: {
-    marginTop: scale(15),
-    marginLeft: scale(20),
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  name: {
-    marginTop: scale(5),
-  },
-});

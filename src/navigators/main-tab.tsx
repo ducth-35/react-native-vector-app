@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { HomeScreen } from "../containers/authStack/home";
-import { CalendaScreen } from "../containers/authStack/calenda";
+import CalendaScreen from "../containers/authStack/calenda";
 import { ResultScreen } from "../containers/authStack/results";
 import { PaymentScreen } from "../containers/authStack/payment";
 import { AccountScreen } from "../containers/authStack/account";
@@ -14,10 +14,18 @@ import TextApp from "@/components/textApp";
 import { IncomeScreen } from "@/containers/authStack/income";
 import { HomeTutor } from "@/containers/authStack/home-tutor";
 import { TeachingClass } from "@/containers/authStack/teaching-class";
+import { useSelector } from "react-redux";
+import {
+  authenStateSelector,
+  userInforSelector,
+} from "@/store/auth/authSelector";
+import { OPTION_HAPTIC, USER_TYPE } from "@/utils/enum";
+import { navigate } from "./navigation-services";
+import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 const Tab = createBottomTabNavigator();
 
-const BOTTOM_TAB_ROUTE = {
+export const BOTTOM_TAB_ROUTE = {
   HOME_SCREEN: "Home",
   CALENDA_SCREEN: "Lịch",
   RESULT_SCREEN: "Kết quả",
@@ -148,6 +156,7 @@ const tabBarLabel = (focused: boolean, route: any) => {
 };
 
 const MyTabBar = ({ state, navigation }: any) => {
+  const isSignIn = useSelector(authenStateSelector);
   return (
     <View style={styles.container}>
       <SafeAreaView edges={["right", "left"]} style={styles.tabBarContainer}>
@@ -155,14 +164,22 @@ const MyTabBar = ({ state, navigation }: any) => {
           {state.routes.map((route: any, index: number) => {
             const isFocused = state.index === index;
             const onPress = () => {
-              const event = navigation.emit({
-                type: "tabPress",
-                target: route.key,
-                canPreventDefault: true,
-              });
+              if (isSignIn) {
+                const event = navigation.emit({
+                  type: "tabPress",
+                  target: route.key,
+                  canPreventDefault: true,
+                });
 
-              if (!isFocused && !event.defaultPrevented) {
-                navigation.navigate({ name: route.name, merge: true });
+                if (!isFocused && !event.defaultPrevented) {
+                  RNReactNativeHapticFeedback.trigger(
+                    "contextClick",
+                    OPTION_HAPTIC
+                  );
+                  navigation.navigate({ name: route.name, merge: true });
+                }
+              } else {
+                navigate(APP_SCREEN.INPUT_NUMBER_SCREEN, { isLogin: false });
               }
             };
             return (
@@ -183,8 +200,7 @@ const MyTabBar = ({ state, navigation }: any) => {
 };
 
 export const MainTab = () => {
-  const [istutor, setIstutor] = React.useState(false);
-  const [isTutor, setIsTutor] = React.useState(false);
+  const user = useSelector(userInforSelector);
   return (
     <Tab.Navigator
       initialRouteName={APP_SCREEN.HOME_SCREEN}
@@ -195,13 +211,13 @@ export const MainTab = () => {
     >
       <Tab.Screen
         name={BOTTOM_TAB_ROUTE.HOME_SCREEN}
-        component={isTutor ? HomeTutor : HomeScreen}
+        component={user?.role === USER_TYPE.TUTOR ? HomeTutor : HomeScreen}
       />
       <Tab.Screen
         name={BOTTOM_TAB_ROUTE.CALENDA_SCREEN}
         component={CalendaScreen}
       />
-      {istutor ? (
+      {user?.role === USER_TYPE.TUTOR ? (
         <Tab.Screen
           name={BOTTOM_TAB_ROUTE.TEACHING_SCREEN}
           component={TeachingClass}
@@ -213,7 +229,7 @@ export const MainTab = () => {
         />
       )}
 
-      {istutor ? (
+      {user?.role === USER_TYPE.TUTOR ? (
         <Tab.Screen
           name={BOTTOM_TAB_ROUTE.INCOME_SCREEN}
           component={IncomeScreen}

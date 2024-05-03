@@ -1,0 +1,27 @@
+<svg width="150" height="71" viewBox="0 0 150 71" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(0 13)">
+            <g transform="translate(0 18)" fill="#F3FFE2">
+                <rect x="46" width="86" height="8" rx="4"/>
+                <rect x="140" y="2" width="10" height="8" rx="4"/>
+                <path d="M79 24v8H29l.2-.005A4 4 0 0 0 29 24h50zM106 8a4 4 0 1 0 0 8H57V8z"/>
+                <rect x="18" y="16" width="106" height="8" rx="4"/>
+                <rect y="32" width="81" height="8" rx="4"/>
+            </g>
+            <circle stroke="#53B30B" stroke-width="2" fill="#F3FFE2" cx="75" cy="34" r="20"/>
+            <circle stroke="#53B30B" stroke-width="1.5" fill="#F3FFE2" cx="47" cy="4" r="3.25"/>
+            <circle stroke="#9FE46B" fill="#F3FFE2" cx="129" cy="34" r="2.5"/>
+            <path d="M73.252 41.647 66.53 35.05a1.044 1.044 0 0 1 0-1.475 1.072 1.072 0 0 1 1.49 0l5.97 5.887 9.804-11.204a1.072 1.072 0 0 1 1.489 0 1.044 1.044 0 0 1 0 1.475L74.741 41.647a1.03 1.03 0 0 1-.765.306.974.974 0 0 1-.724-.306z" fill="#53B30B" fill-rule="nonzero"/>
+        </g>
+        <g transform="translate(85)" fill="#F3FFE2">
+            <rect width="26" height="8" rx="4"/>
+            <rect x="30" y="3" width="11" height="8" rx="4"/>
+            <path d="M18 8v.764c-.614.55-1 1.347-1 2.236v2c0 .889.386 1.687 1 2.236V16H6l.176-.005A3 3 0 0 0 9 13v-2a3 3 0 0 0-3-3h12z"/>
+            <rect x="2" y="16" width="35" height="8" rx="4"/>
+        </g>
+        <g transform="translate(137.75 24)" fill="#53B30B">
+            <rect x="2.25" width="1.5" height="6" rx=".75"/>
+            <rect transform="rotate(90 3 3)" x="2.25" width="1.5" height="6" rx=".75"/>
+        </g>
+    </g>
+</svg>

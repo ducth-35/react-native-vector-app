@@ -7,14 +7,16 @@ import {
   ViewStyle,
 } from "react-native";
 import TextApp from "../textApp";
-import { OutStandInterface } from "../../types/outstand";
 import FastImage from "react-native-fast-image";
 import { scale } from "../../common/scale";
 import { HomeSVG } from "../../asset";
+import { ImageAsset } from "@/asset/image";
+import { formatNumber } from "@/utils/helper";
+import { isNullOrEmpty } from "@/utils/method";
 
 type Props = {
-  item: OutStandInterface;
-  newStyle: ViewStyle;
+  item?: TutorSuggestionInterface;
+  newStyle?: ViewStyle;
   onPress?: () => void;
 };
 
@@ -22,25 +24,22 @@ export const CardOutStand = ({ item, newStyle, onPress }: Props) => {
   return (
     <TouchableOpacity style={newStyle} onPress={onPress}>
       <View style={styles.card}>
-        <FastImage source={item.image} style={styles.avatar}>
-          <View style={styles.viewStar}>
-            <HomeSVG.STAR />
-            <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
-              {item.star}
-            </TextApp>
-          </View>
-        </FastImage>
+        {isNullOrEmpty(item?.avatar) ? (
+          <HomeSVG.AVATAR_DEFAULT width={scale(52)} height={scale(52)} />
+        ) : (
+          <FastImage source={{ uri: item?.avatar }} style={styles.avatar} />
+        )}
       </View>
       <View style={styles.viewInfor}>
-        <TextApp preset="text14">{item.name}</TextApp>
+        <TextApp preset="text14">{item?.fullName}</TextApp>
         <TextApp preset="text12" style={styles.school}>
-          {item.school}
+          {item?.school}
         </TextApp>
         <View style={styles.viewSubjec}>
-          {item.subject.map((it) => (
-            <View key={it} style={styles.viewItemSubjec}>
+          {item?.subject.map((it, index) => (
+            <View key={index} style={styles.viewItemSubjec}>
               <TextApp preset="text10" style={{ color: "#ff6905" }}>
-                {it}
+                {it.gradeName}
               </TextApp>
             </View>
           ))}
@@ -63,21 +62,22 @@ const styles = StyleSheet.create({
   viewSubjec: {
     flexDirection: "row",
     flexWrap: "wrap",
+    marginTop: scale(5),
   },
   viewItemSubjec: {
     backgroundColor: "#ffebf0",
     marginRight: scale(10),
     paddingVertical: scale(2),
     paddingHorizontal: scale(10),
-    borderRadius: scale(5),
     marginBottom: scale(10),
+    borderRadius: scale(5),
   },
   viewInfor: {
-    marginLeft: scale(15),
+    flex: 1,
+    marginHorizontal: scale(15),
   },
   school: {
     color: "#b8b8d2",
-    marginVertical: scale(5),
   },
   viewStar: {
     backgroundColor: "#fff",

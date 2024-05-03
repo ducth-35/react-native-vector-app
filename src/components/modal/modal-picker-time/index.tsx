@@ -21,6 +21,9 @@ export const ModalizeTimePicker = React.forwardRef(
           handleStyle={{
             display: "none",
           }}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false
+          }}
         >
           <TextApp preset="text18" style={styles.title}>
             {title}

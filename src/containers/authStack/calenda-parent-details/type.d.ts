@@ -1,0 +1,3 @@
+interface RouteCalendaParentDetails {
+  title: string;
+}

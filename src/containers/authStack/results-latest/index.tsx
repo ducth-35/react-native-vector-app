@@ -3,61 +3,62 @@ import { scale } from "@/common/scale";
 import { Header } from "@/components/header";
 import { CardLatestResultDetails } from "@/components/result/card-latest-result-details";
 import TextApp from "@/components/textApp";
-import { useGetResultLatestDetails } from "@/services/parents";
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LoadingView } from "@/components/loading-view";
-import { ChartKit } from "@/components/chart";
-
-const LATEST_RESULT_DETAILS = [
-  { name: "Trần Ngọc An", subject: "Toán", date: "8/4/2023" },
-  { name: "Trần Phương Linh", subject: "Toán", date: "8/4/2023" },
-  { name: "Trần Ngọc Anh", subject: "Toán", date: "8/4/2023" },
-];
+import { ChartKit } from "@/components/header/chart";
+import { useGetResults } from "@/services/results";
 
 const renderItemLatestDetails = (item: any) => {
   return <CardLatestResultDetails item={item.item} />;
 };
 
-const rendeHeaderList = () => {
+const renderHeaderList = () => {
   return (
-    <TextApp preset="text18BlueNormal" style={{ marginBottom: scale(10) }}>
+    <TextApp preset="text18BlueNormal" style={{ marginBottom: scale(10) }} numberOfLines={1}>
       Kết quả gần nhất
     </TextApp>
   );
 };
 
-export const ResultsLatest = () => {
-  const { loading } = useGetResultLatestDetails();
+export const ResultsLatest = (props: any) => {
+  const params: RouteResultsLatest = props.route?.params
+  const isTutor = props.route?.params?.isTutor;
+
+  const { results, loadingGetResult } = useGetResults({
+    studentId: params.studentId
+  });
+
+  if (loadingGetResult) {
+    return <></>
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <Header
         canBack
         backIcon={<HomeSVG.BACK />}
-        title="Trần Ngọc Anh - môn Toán"
+        title={params.studentName}
       />
-      <TextApp
-        preset="text16"
-        style={{ textAlign: "center", marginTop: scale(20) }}
-      >
-        Gia sư: Phạm Trần Phương
+      <TextApp preset="text16" style={{ textAlign: "center" }}>
+        Môn: {params.subjectName}
       </TextApp>
+      {!isTutor && (
+        <TextApp preset="text16" style={{ textAlign: "center" }}>
+          Gia sư: {params.tutor}
+        </TextApp>
+      )}
       <ChartKit />
       <View style={{ flex: 1, margin: scale(20) }}>
         <View style={styles.line} />
-        {loading ? (
-          <LoadingView />
-        ) : (
-          <FlatList
-            data={LATEST_RESULT_DETAILS}
-            showsHorizontalScrollIndicator={false}
-            renderItem={renderItemLatestDetails}
-            keyExtractor={(item: any) => item.name}
-            ListHeaderComponent={rendeHeaderList}
-          />
-        )}
+        <FlatList
+          data={results}
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItemLatestDetails}
+          keyExtractor={(item: any) => item.id}
+          ListHeaderComponent={renderHeaderList}
+        />
       </View>
     </SafeAreaView>
   );

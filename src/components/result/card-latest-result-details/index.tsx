@@ -8,17 +8,22 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 
 type Props = {
   item: {
-    date: string;
+    id: number;
+    day: string;
   };
 };
 
 export const CardLatestResultDetails = ({ item }: Props) => {
   const handleShowDetails = () => {
-    navigate(APP_SCREEN.LEARNING_OUTCOMES_SCREEN);
+    navigate(APP_SCREEN.LEARNING_OUTCOMES_SCREEN, { id: item.id });
   };
   return (
-    <TouchableOpacity style={[styles.item]} onPress={handleShowDetails}>
-      <TextApp preset="text14">Buổi học ngày - {item.date}</TextApp>
+    <TouchableOpacity
+      key={item.id + "result"}
+      style={[styles.item]}
+      onPress={handleShowDetails}
+    >
+      <TextApp preset="text14">Buổi học ngày - {item.day}</TextApp>
       <HomeSVG.NEXT />
     </TouchableOpacity>
   );

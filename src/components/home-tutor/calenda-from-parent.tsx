@@ -7,100 +7,84 @@ import { ItemCalendaFromParent } from "./item-calenda-from-parent";
 import { navigate } from "@/navigators/navigation-services";
 import { APP_SCREEN } from "@/navigators/screen-type";
 import { HIT_SLOP } from "@/utils/helper";
-
-const data = [
-  {
-    id: 1,
-    name: "Dạy Toán",
-    icon: <HomeSVG.TOAN />,
-    last_ago: "2 tiếng trước",
-    time: "17:00 PM - 19:00 PM",
-    color: "#f6dada",
-  },
-  {
-    id: 2,
-    name: "Dạy Lý",
-    icon: <HomeSVG.LY />,
-    last_ago: "2 tiếng trước",
-    time: "17:00 PM - 19:00 PM",
-    color: "#f6e5da",
-  },
-  {
-    id: 3,
-    name: "Dạy Toán",
-    icon: <HomeSVG.TOAN />,
-    last_ago: "2 tiếng trước",
-    time: "17:00 PM - 19:00 PM",
-    color: "#f6dada",
-  },
-  {
-    id: 4,
-    name: "Dạy Lý",
-    icon: <HomeSVG.LY />,
-    last_ago: "2 tiếng trước",
-    time: "17:00 PM - 19:00 PM",
-    color: "#f6e5da",
-  },
-];
-
-const renderItem = ({ item }: any) => {
-  return (
-    <View style={{ marginVertical: scale(10), marginRight: scale(10) }}>
-      <ItemCalendaFromParent item={item} />
-    </View>
-  );
-};
-
-const renderListEmpty = () => {
-  return (
-    <View style={styles.viewEmpty}>
-      <TextApp preset="text14Normal"> Bạn chưa có đặt lịch nào</TextApp>
-    </View>
-  );
-};
+import { useGetBooking } from "./services";
+import { useSelector } from "react-redux";
+import { authenStateSelector } from "@/store/auth/authSelector";
 
 export const CalendaFromParent = () => {
+  const isSignIn = useSelector(authenStateSelector);
+  const { state } = useGetBooking();
+
+  const renderItem = ({ item }: any) => {
+    return (
+      <View
+        style={{
+          marginVertical: scale(10),
+          marginRight: scale(10),
+        }}
+      >
+        <ItemCalendaFromParent item={item} />
+      </View>
+    );
+  };
+
+  const renderListEmpty = () => {
+    return (
+      <View style={styles.viewEmpty}>
+        <TextApp preset="text14Normal"> Bạn chưa có đặt lịch nào</TextApp>
+      </View>
+    );
+  };
+
   const handleCalendaALl = () => {
-    navigate(APP_SCREEN.CALENDA_PARENT_DETAIL_SCREEN);
+    if (isSignIn) {
+      navigate(APP_SCREEN.CALENDA_PARENT_DETAIL_SCREEN, {
+        title: "Đặt lịch từ phụ huynh",
+      });
+    } else {
+      navigate(APP_SCREEN.INPUT_NUMBER_SCREEN, { isLogin: false })
+    }
+
   };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TextApp>Đặt lịch từ phụ huynh</TextApp>
+        <TextApp preset="text18">Đặt lịch từ phụ huynh </TextApp>
         <Pressable hitSlop={HIT_SLOP} onPress={handleCalendaALl}>
           <TextApp preset="text14NormalBlue">Tất cả</TextApp>
         </Pressable>
       </View>
-      <View style={styles.listBooking}>
+      {!state?.loading ? (
         <FlatList
-          data={data}
+          data={state?.data.slice(0, 5)}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={renderItem}
           keyExtractor={(item: any) => item.id}
           ListEmptyComponent={renderListEmpty}
+          style={styles.listBooking}
         />
-      </View>
+      ) : null}
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    marginHorizontal: scale(20),
+    marginBottom: scale(20),
   },
   listBooking: {
-    paddingLeft: scale(10),
+    paddingHorizontal: scale(10),
     backgroundColor: "#fff",
     shadowRadius: 5,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: {
       width: 0,
-      height: 10, // thay đổi giá trị height để chỉ đổ bóng ở cạnh dưới
+      height: 10,
     },
-    elevation: 3,
-    borderBottomLeftRadius: scale(10),
-    borderBottomRightRadius: scale(10),
+    elevation: 10,
+    borderRadius: scale(20),
     marginTop: scale(10),
   },
   header: {

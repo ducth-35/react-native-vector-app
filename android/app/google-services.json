@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "249957554447",
+    "project_id": "vector-88b86",
+    "storage_bucket": "vector-88b86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249957554447:android:8e23052bac7db7536b467a",
+        "android_client_info": {
+          "package_name": "com.app.vector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249957554447-40p9gr7a5dr3k5vio1pr2cvcu3fgsm25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCInz1mFXgr_bQC42eLX-gTWcUf3B51fVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249957554447-40p9gr7a5dr3k5vio1pr2cvcu3fgsm25.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249957554447-skrjlkipis1f97of6i1blkebrk98gppe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vector.ios.development"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

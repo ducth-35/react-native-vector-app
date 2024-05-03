@@ -1,0 +1,50 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  
+  desc "Get certificates"
+  lane :certificates do
+    sync_code_signing(
+      type: "development",
+      app_identifier: ['com.vector.ios.development'],
+      force_for_new_devices: true,
+      readonly: true,
+      clone_branch_directly: true
+    )
+
+    # You can repeate the sync_code_signing with other types of certificates such as appstore and adhoc
+    # sync_code_signing(
+    #   type: "appstore",
+    #   app_identifier: 'com.app.vector',
+    #   readonly: true
+    # )
+  end
+
+  desc "Generate new certificates"
+  lane :generate_new_certificates do
+    sync_code_signing(
+      type: "development",
+      app_identifier: ['com.vector.ios.development'],
+      force_for_new_devices: true,
+      readonly: false
+    )
+    
+    # You can repeate the sync_code_signing with other types of certificates such as appstore and adhoc
+
+  end
+end

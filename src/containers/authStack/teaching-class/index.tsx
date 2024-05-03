@@ -1,86 +1,55 @@
 import { HomeSVG } from "@/asset";
 import { scale } from "@/common/scale";
+import { CardClass } from "@/components/card-class";
 import { Header } from "@/components/header";
-import { LoadingView } from "@/components/loading-view";
-import { CardResult } from "@/components/result/card-result";
 import TextApp from "@/components/textApp";
-import { useGetTeachingClassTutor } from "@/services/tutor";
+import { useGetResultOverview } from "@/services/results";
 import React from "react";
 import { SectionList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Skeleton } from "../search/skeleton";
 
-const DATA = [
-  {
-    title: "Trần Ngọc An - Lớp 2",
-    data: [
-      {
-        name: "Môn toán ",
-        teacher: "Phạm Trần Phương",
-        time: "16:30 PM - 17:30 PM",
-        icon: <HomeSVG.TOAN />,
-        color: "#f6dada",
-      },
-      {
-        name: "Môn lý ",
-        teacher: "Phạm Bích Hồng",
-        time: "16:30 PM - 17:30 PM",
-        icon: <HomeSVG.LY />,
-        color: "#f6e5da",
-      },
-    ],
-  },
-  {
-    title: "Trần Phương Linh - Lớp 2",
-    data: [
-      {
-        name: "Môn toán ",
-        teacher: "Phạm Trần Phương",
-        time: "16:30 PM - 17:30 PM",
-        icon: <HomeSVG.TOAN />,
-        color: "#f6dada",
-      },
-      {
-        name: "Môn lý ",
-        teacher: "Phạm Bích Hồng",
-        time: "16:30 PM - 17:30 PM",
-        icon: <HomeSVG.LY />,
-        color: "#f6e5da",
-      },
-    ],
-  },
-];
 
-const renderItem = (item: any) => {
-  return <CardResult item={item.item} />;
-};
+export const TeachingClass = (props: any) => {
+  const isParent = props.route?.params?.isParent;
+  const { resultOverview, loading } = useGetResultOverview();
 
-const renderHeader = ({ section: { title } }: any) => (
-  <TextApp preset="text16" style={{ marginVertical: scale(10) }}>
-    {title}
-  </TextApp>
-);
+  const renderItem = (item: any) => {
+    return <CardClass item={item.item} isParent={isParent} />;
+  };
 
-export const TeachingClass = () => {
-  const { data, loading } = useGetTeachingClassTutor();
+  const renderHeader = ({ section: { title } }: any) => (
+    <TextApp preset="text16" style={{ marginVertical: scale(10) }}>
+      {title}
+    </TextApp>
+  );
+
+  if (loading) {
+    return <Skeleton />
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Lớp học" />
+      {isParent ? (
+        <Header
+          title="Quản lý lớp học của con"
+          canBack
+          backIcon={<HomeSVG.BACK />}
+        />
+      ) : (
+        <Header title="Lớp học" />
+      )}
       <View style={styles.contentContainer}>
-        {loading ? (
-          <LoadingView />
-        ) : (
-          <SectionList
-            sections={DATA}
-            keyExtractor={(item: any, index: any) => item + index}
-            renderItem={renderItem}
-            renderSectionHeader={renderHeader}
-            contentContainerStyle={{
-              marginHorizontal: scale(15),
-              marginTop: scale(20),
-            }}
-            stickySectionHeadersEnabled={false}
-          />
-        )}
+        <SectionList
+          sections={resultOverview}
+          keyExtractor={(item: any, index: any) => item + index}
+          renderItem={renderItem}
+          renderSectionHeader={renderHeader}
+          contentContainerStyle={{
+            marginHorizontal: scale(15),
+          }}
+          stickySectionHeadersEnabled={false}
+        />
       </View>
     </SafeAreaView>
   );

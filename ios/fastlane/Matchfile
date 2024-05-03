@@ -1,0 +1,3 @@
+git_url("https://glpat-vLyuxcF9YcASKSyVQyir@gitlab.com/edu-system1/app-codesigning.git")
+
+storage_mode("git")

@@ -16,12 +16,12 @@ export function getTheme() {
     // month
     monthTextColor: "black",
     textMonthFontSize: 16,
-    textMonthFontFamily: FontFamily.poppins_regular,
+    textMonthFontFamily: FontFamily.SFUIText_regular,
     textMonthFontWeight: "bold" as const,
     // day names
     textSectionTitleColor: "black",
     textDayHeaderFontSize: 12,
-    textDayHeaderFontFamily: FontFamily.poppins_regular,
+    textDayHeaderFontFamily: FontFamily.SFUIText_regular,
     textDayHeaderFontWeight: "normal" as const,
     // dates
     dayTextColor: themeColor,

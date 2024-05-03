@@ -1,0 +1,3 @@
+interface TutorDetailInteface {
+  id?: number;
+}

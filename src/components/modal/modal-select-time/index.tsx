@@ -62,6 +62,9 @@ export const ModalizeSelectTime = React.forwardRef(
             display: "none",
           }}
           closeOnOverlayTap={false}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false
+          }}
         >
           <TextApp preset="text18" style={styles.title}>
             Giờ học

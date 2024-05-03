@@ -1,8 +1,8 @@
 export const IconAsset = {
-  home: require("./bottom-tab/home.png"),
-  calenda: require("./bottom-tab/calenda.png"),
-  result: require("./bottom-tab/result.png"),
-  payment: require("./bottom-tab/payment.png"),
-  account: require("./bottom-tab/account.png"),
-  teaching: require("./bottom-tab/teaching-class.png"),
+  home: require("./bottom-tab/home.webp"),
+  calenda: require("./bottom-tab/calenda.webp"),
+  result: require("./bottom-tab/result.webp"),
+  payment: require("./bottom-tab/payment.webp"),
+  account: require("./bottom-tab/account.webp"),
+  teaching: require("./bottom-tab/teaching-class.webp"),
 };

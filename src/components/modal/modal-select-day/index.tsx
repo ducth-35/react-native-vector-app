@@ -68,7 +68,10 @@ export const ModalizeSelectDay = React.forwardRef(
           handleStyle={{
             display: "none",
           }}
-          //   closeOnOverlayTap={false}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false
+          }}
+        //   closeOnOverlayTap={false}
         >
           <View style={styles.container}>
             <TextApp preset="text18">{data.label}</TextApp>

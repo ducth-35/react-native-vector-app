@@ -1,11 +1,11 @@
 export interface PaymentInfor {
   id: number;
-  class: string;
-  student: string;
+  subjectName: string;
+  studentName: string;
   sessions: number;
   startDate: string;
   endDate: string;
-  pay: boolean;
   price: string;
   color: string;
+  status?: string;
 }

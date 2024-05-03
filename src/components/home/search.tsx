@@ -1,5 +1,5 @@
 import { scale } from "@/common/scale";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
 type SearchProps = {
@@ -7,16 +7,27 @@ type SearchProps = {
   leftIcon?: JSX.Element;
   onPressIn?: () => void;
   editable?: boolean;
+  placeholder?: string;
+  onChangeText?: Dispatch<SetStateAction<string>>;
 };
 
-export const Search = ({ leftIcon, rightIcon, ...props }: SearchProps) => {
+export const Search = ({
+  leftIcon,
+  rightIcon,
+  onPressIn,
+  placeholder,
+  onChangeText,
+  ...props
+}: SearchProps) => {
   return (
-    <Pressable style={style.container}>
+    <Pressable style={style.container} onPress={onPressIn}>
       {leftIcon}
       <View style={{ flex: 1 }}>
         <TextInput
-          placeholder="Tìm gia sư, lớp năng khiếu..."
-          style={{ padding: scale(15) }}
+          placeholder={placeholder}
+          style={{ height: scale(45), marginHorizontal: scale(10) }}
+          onPressIn={onPressIn}
+          onChangeText={onChangeText}
           {...props}
         />
       </View>

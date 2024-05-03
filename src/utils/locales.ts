@@ -36,3 +36,32 @@ export const setupCalendar = () => {
 
   LocaleConfig.defaultLocale = "vn";
 };
+
+export const formatDate = (formattedDate: string) => {
+  switch (formattedDate) {
+    case "Mon":
+      return "T2";
+      break;
+    case "Tue":
+      return "T3";
+      break;
+    case "Wed":
+      return "T4";
+      break;
+    case "Thu":
+      return "T5";
+      break;
+    case "Fri":
+      return "T6";
+      break;
+    case "Sat":
+      return "T7";
+      break;
+    case "Sun":
+      return "CN";
+      break;
+    default:
+      return "";
+      break;
+  }
+};

@@ -17,6 +17,7 @@ type ButtonProps = TouchableOpacityProps & {
   style?: ViewStyle;
   styleTitle?: TextStyle;
   title: string;
+  color?: string;
   isLoading?: boolean;
   preset?: ButtonPresetsName;
   leftIcon?: React.ReactNode;
@@ -29,6 +30,7 @@ export const Button = ({
   title = "Title",
   isLoading = false,
   preset = "default",
+  color = "#fff",
   leftIcon,
   ...rest
 }: ButtonProps) => {
@@ -49,7 +51,7 @@ export const Button = ({
       onPress={handlePress}
     >
       {isLoading ? (
-        <ActivityIndicator color={"#fff"} />
+        <ActivityIndicator color={color} />
       ) : (
         <View style={styles.contentBtn}>
           {leftIcon}

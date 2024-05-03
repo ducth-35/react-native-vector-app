@@ -1,0 +1,3 @@
+interface RouteTeachingClass {
+  isParent: boolean;
+}

@@ -40,6 +40,9 @@ export const ModalizeCalendar = React.forwardRef(
             display: "none",
           }}
           closeOnOverlayTap={false}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false
+          }}
         >
           <TextApp preset="text18" style={styles.title}>
             {title}
@@ -68,9 +71,9 @@ export const ModalizeCalendar = React.forwardRef(
               textMonthFontWeight: "600",
               textDayFontWeight: "400",
               dayTextColor: "#333333",
-              textDayFontFamily: FontFamily.poppins_regular,
+              textDayFontFamily: FontFamily.SFUIText_regular,
               arrowColor: "#000",
-              textMonthFontFamily: FontFamily.poppins_regular,
+              textMonthFontFamily: FontFamily.SFUIText_regular,
               arrowHeight: scale(30),
               arrowWidth: scale(30),
               textDayHeaderFontSize: 12,

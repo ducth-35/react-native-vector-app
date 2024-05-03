@@ -4,35 +4,34 @@ import TextApp from "../textApp";
 import FastImage from "react-native-fast-image";
 import { scale } from "../../common/scale";
 import { HomeSVG } from "../../asset";
-import { ArtCenterInterface } from "../../types/artCenter";
+import { ImageAsset } from "@/asset/image";
 
 type Props = {
-  item: ArtCenterInterface;
+  item: CenterInterface;
   newStyle: ViewStyle;
 };
 
-export const CardArtCenter = (props: Props) => {
-  const { item, newStyle } = props;
+export const CardArtCenter = ({ item, newStyle }: Props) => {
   return (
     <View style={newStyle}>
-      <FastImage source={item.image} style={styles.avatar} />
+      <FastImage source={ImageAsset.banner} style={styles.avatar} />
       <View style={styles.infor}>
         <TextApp preset="text12">{item.location}</TextApp>
         <TextApp preset="text14" style={{ marginVertical: scale(10) }}>
           {item.name}
         </TextApp>
         <View style={styles.viewSubjec}>
-          {item.subject.map((it) => (
-            <View key={it} style={styles.viewItemSubjec}>
+          {item?.subjects?.map((it) => (
+            <View key={it.id} style={styles.viewItemSubjec}>
               <TextApp preset="text10" style={{ color: "#ff6905" }}>
-                {it}
+                {it.name}
               </TextApp>
             </View>
           ))}
           <View style={styles.viewStar}>
             <HomeSVG.STAR />
             <TextApp preset="text12" style={{ marginLeft: scale(5) }}>
-              {item.star}
+              {item.rating}
             </TextApp>
           </View>
         </View>

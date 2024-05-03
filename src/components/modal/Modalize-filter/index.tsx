@@ -5,6 +5,10 @@ import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
 import { scale } from "../../../common/scale";
 import TextApp from "../../textApp";
 import { HomeSVG } from "../../../asset";
+import { HIT_SLOP } from "@/utils/helper";
+import { Search } from "@/components/home/search";
+import { useGetSchool } from "@/services/school";
+import { ListDegreeImage } from "@/components/list-degree-image";
 
 interface ModalizeFilterProps {
   data: {
@@ -15,28 +19,40 @@ interface ModalizeFilterProps {
   selectedItems: string[];
   setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
   isSchool?: boolean;
+  isOneSelect?: boolean;
+  // isChooseImage?: boolean;
+  // updateListDegree?: (data: ImageInterface[]) => void;
 }
 
 export const ModalizeFilter = React.forwardRef(
-  (props: ModalizeFilterProps, ref) => {
-    const { data, handleClose, selectedItems, setSelectedItems, isSchool } =
-      props;
+  (
+    {
+      data,
+      handleClose,
+      selectedItems,
+      setSelectedItems,
+      isOneSelect,
+      isSchool,
+    }: // updateListDegree,
+    ModalizeFilterProps,
+    ref
+  ) => {
+    const [search, setSearch] = React.useState<string>("");
+    const { schools } = useGetSchool(search);
+
+    React.useEffect(() => {
+      if (isSchool) {
+        setSchoolSearch(schools);
+      }
+    }, [search]);
+
     const [tempSelectedItems, setTempSelectedItems] =
       React.useState<string[]>(selectedItems);
+    const [schoolSearch, setSchoolSearch] = React.useState<string[]>([]);
 
     React.useEffect(() => {
       setTempSelectedItems(selectedItems);
     }, [selectedItems]);
-
-    const handleItemPress = (item: string) => {
-      setTempSelectedItems((prevSelectedItems) => {
-        if (prevSelectedItems.includes(item)) {
-          return prevSelectedItems.filter((i) => i !== item);
-        } else {
-          return [...prevSelectedItems, item];
-        }
-      });
-    };
 
     const handleSelectDone = () => {
       setSelectedItems(tempSelectedItems);
@@ -52,6 +68,31 @@ export const ModalizeFilter = React.forwardRef(
       }
     };
 
+    const handleItemPress = React.useCallback(
+      (item: string) => {
+        if (isOneSelect) {
+          setTempSelectedItems((prevSelectedItems) => {
+            if (prevSelectedItems.includes(item)) {
+              return [];
+            } else {
+              return [item];
+            }
+          });
+        } else {
+          setTempSelectedItems((prevSelectedItems) => {
+            if (prevSelectedItems.includes(item)) {
+              return prevSelectedItems.filter((i) => i !== item);
+            } else {
+              return [...prevSelectedItems, item];
+            }
+          });
+        }
+      },
+      [tempSelectedItems]
+    );
+
+    const isDisable = tempSelectedItems.length <= 0;
+
     return (
       <Portal>
         <Modalize
@@ -62,9 +103,13 @@ export const ModalizeFilter = React.forwardRef(
             display: "none",
           }}
           closeOnOverlayTap={false}
+          scrollViewProps={{
+            showsVerticalScrollIndicator: false,
+          }}
         >
           <View style={styles.container}>
             <TouchableOpacity
+              hitSlop={HIT_SLOP}
               style={styles.iconClose}
               onPress={handleCloseModal}
             >
@@ -74,9 +119,16 @@ export const ModalizeFilter = React.forwardRef(
           </View>
           {isSchool ? (
             <View>
-              {data.item.map((it) => (
+              <View style={styles.search}>
+                <Search
+                  placeholder="Nhập trường cần tìm..."
+                  leftIcon={<HomeSVG.SEARCH />}
+                  onChangeText={(value) => setSearch(value)}
+                />
+              </View>
+              {schoolSearch.map((it, index) => (
                 <TouchableOpacity
-                  key={it}
+                  key={index + "shoool"}
                   style={[styles.viewSchool]}
                   onPress={() => handleItemPress(it)}
                 >
@@ -93,31 +145,36 @@ export const ModalizeFilter = React.forwardRef(
               ))}
             </View>
           ) : (
-            <View style={styles.viewBody}>
-              {data.item.map((it) => (
-                <TouchableOpacity
-                  key={it}
-                  style={[
-                    styles.body,
-                    tempSelectedItems.includes(it) && styles.selected,
-                  ]}
-                  onPress={() => handleItemPress(it)}
-                >
-                  <TextApp
-                    preset="text12"
+            <>
+              <View style={styles.viewBody}>
+                {data.item.map((it) => (
+                  <TouchableOpacity
+                    key={it}
                     style={[
-                      styles.text,
-                      tempSelectedItems.includes(it) && styles.textSelected,
+                      styles.body,
+                      tempSelectedItems.includes(it) && styles.selected,
                     ]}
+                    onPress={() => handleItemPress(it)}
                   >
-                    {it}
-                  </TextApp>
-                </TouchableOpacity>
-              ))}
-            </View>
+                    <TextApp
+                      preset="text12"
+                      style={[
+                        styles.text,
+                        tempSelectedItems.includes(it) && styles.textSelected,
+                      ]}
+                    >
+                      {it}
+                    </TextApp>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </>
           )}
-
-          <Pressable style={styles.done} onPress={handleSelectDone}>
+          <Pressable
+            style={styles.done}
+            onPress={handleSelectDone}
+            disabled={isDisable}
+          >
             <TextApp style={styles.textdone}>Hoàn thành chọn</TextApp>
           </Pressable>
         </Modalize>
@@ -130,6 +187,10 @@ const styles = StyleSheet.create({
   calendarFilter: {
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
+  },
+  search: {
+    paddingHorizontal: scale(20),
+    paddingBottom: scale(20),
   },
   container: {
     flex: 1,
@@ -160,10 +221,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     marginHorizontal: scale(20),
-    paddingBottom: scale(30),
+    paddingBottom: scale(10),
   },
   text: {
     color: "#858597",
+    textAlign: "center",
   },
   iconClose: {
     position: "absolute",

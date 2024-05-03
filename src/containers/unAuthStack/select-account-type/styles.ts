@@ -6,25 +6,29 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "space-between",
   },
   viewHeader: {
     marginTop: scale(50),
-    marginHorizontal: scale(30),
+    marginHorizontal: scale(20),
   },
   textHeader1: {
-    fontFamily: FontFamily.poppins_regular,
+    fontFamily: FontFamily.SFUIText_regular,
     fontSize: 34,
     marginBottom: scale(10),
+    color: "#000",
   },
   viewInput: {
     borderColor: "#B8B8D2",
     borderWidth: 1,
-    padding: scale(15),
+    justifyContent: "center",
+    paddingHorizontal: scale(10),
+    minHeight: scale(45),
     borderRadius: 5,
   },
   viewInputName: {
     marginTop: scale(20),
-    marginHorizontal: scale(30),
+    marginHorizontal: scale(20),
   },
   inputName: {
     color: "#1f1f39",
@@ -35,13 +39,10 @@ export const styles = StyleSheet.create({
   },
   viewSeclectAccount: {
     marginTop: scale(20),
-    marginHorizontal: scale(30),
+    marginHorizontal: scale(20),
   },
   viewDone: {
-    position: "absolute",
-    bottom: scale(100),
-    left: scale(30),
-    right: scale(30),
+    marginHorizontal: scale(20),
   },
   selectedAccount: {
     backgroundColor: "#3d5cff",

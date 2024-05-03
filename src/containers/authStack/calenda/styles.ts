@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { SCREEN_HEIGHT, scale } from "../../../common/scale";
+import { FontFamily } from "@/common/constant";
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,25 +9,72 @@ export const styles = StyleSheet.create({
   },
   viewHeader: {
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: scale(50),
+    // marginTop: Platform.OS === "ios" ? scale(40) : 0,
   },
   viewCalenders: {
-    backgroundColor: "#fff",
-    height: SCREEN_HEIGHT / 2,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    shadowRadius: 5,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    elevation: 3,
+  },
+  eventDayContainer: {
+    width: 20,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 3,
+  },
+  calendarWrapper: {
+    // backgroundColor: "red", // Set the background color to blue
+    borderBottompLeftRadius: 16, // Apply custom border radius
+    borderBottompRightRadius: 16, // Apply custom border radius
+    overflow: "hidden", // Clip the content within the border radius
+    // elevation: 0, // Remove the shadow effect
+  },
+  dayTextDisable: {
+    fontSize: 14,
+    color: "#f4f3fd",
+    fontFamily: FontFamily.SFUIText_medium,
+  },
+  dayText: {
+    fontFamily: FontFamily.SFUIText_medium,
+    fontSize: 14,
+    color: "#000",
+  },
+  textToday: {
+    fontSize: 14,
+    color: "#fff",
+    fontWeight: "600",
+    fontFamily: FontFamily.SFUIText_bold,
+  },
+  dayMarkText: {
+    fontSize: 14,
+    color: "#000",
+    fontWeight: "600",
+    fontFamily: FontFamily.SFUIText_bold,
+  },
+  dayMarkContainer: {
+    width: scale(32),
+    height: scale(32),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 12,
+    backgroundColor: "#f4f3fd",
+  },
+  dayContainer: {
+    width: scale(32),
+    height: scale(32),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  todayContainer: {
+    width: scale(32),
+    height: scale(32),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 12,
+    backgroundColor: "#4d6eff",
+  },
+  today: {
+    fontSize: 14,
+    color: "#4d6eff",
+    fontWeight: "600",
+    fontFamily: FontFamily.SFUIText_bold,
   },
 });

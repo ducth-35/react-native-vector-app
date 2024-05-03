@@ -8,5 +8,6 @@ export const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
+    marginTop: scale(20),
   },
 });

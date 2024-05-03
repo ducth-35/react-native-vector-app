@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   textPice: {
     color: "#3d5cff",
-    fontFamily: FontFamily.poppins_bold,
+    fontFamily: FontFamily.SFUIText_bold,
     fontSize: 18,
     fontWeight: "700",
   },

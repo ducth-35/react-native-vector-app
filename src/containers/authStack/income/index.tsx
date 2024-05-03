@@ -8,8 +8,9 @@ import { FontFamily } from "@/common/constant";
 import { CardPayment } from "@/components/payment/card-payment";
 import { PaymentInfor } from "@/types/payment";
 import { TotalIncome } from "@/components/total-income";
-import { useGetIncomeTutor } from "@/services/tutor";
 import { LoadingView } from "@/components/loading-view";
+import { useGetPaymentsPaid, useGetPaymentsUnpaid } from "@/services/payment";
+import { Skeleton } from "../search/skeleton";
 
 const renderItemUnPaid: ListRenderItem<PaymentInfor> = ({ item }) => {
   return <CardPayment item={item} />;
@@ -27,7 +28,7 @@ const headerUnPaid = () => {
   );
 };
 
-const headerPaid = () => {  
+const headerPaid = () => {
   return (
     <View style={{ marginHorizontal: scale(20), marginTop: scale(20) }}>
       <TextApp preset="text18">Đã thanh toán</TextApp>
@@ -36,13 +37,28 @@ const headerPaid = () => {
 };
 
 export const IncomeScreen: FC = () => {
-  const { dataPaid, dataUnPaid, loading } = useGetIncomeTutor();
+  const { paymentUnpaid, loadingUnpaid } = useGetPaymentsUnpaid();
+  const { paymentPaid, loadingPaid } = useGetPaymentsPaid();
+  const paymentUnpaidResponse: PaymentInfor[] = [];
+  const paymentPaidResponse: PaymentInfor[] = [];
+  for (const p of paymentUnpaid) {
+    paymentUnpaidResponse.push({
+      ...p,
+      color: "#cfecff",
+    });
+  }
+  for (const p of paymentPaid) {
+    paymentPaidResponse.push({
+      ...p,
+      color: "#fdf1db",
+    });
+  }
 
   const renderListFooter = () => {
     return (
       <View>
         <FlatList
-          data={dataUnPaid}
+          data={paymentPaidResponse}
           showsHorizontalScrollIndicator={false}
           renderItem={renderItemPaid}
           keyExtractor={(item: any) => item.id}
@@ -54,24 +70,26 @@ export const IncomeScreen: FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Thu nhập" />
-      <TotalIncome />
-      <View style={styles.contentContainer}>
-        {loading ? (
-          <LoadingView />
-        ) : (
-          <FlatList
-            data={dataPaid}
-            showsVerticalScrollIndicator={false}
-            renderItem={renderItemUnPaid}
-            keyExtractor={(item: any) => item.id}
-            ListFooterComponent={renderListFooter}
-            contentContainerStyle={{
-              paddingBottom: scale(200),
-            }}
-            ListHeaderComponent={headerUnPaid}
-          />
-        )}
-      </View>
+      {loadingUnpaid && loadingPaid ? (
+        <Skeleton />
+      ) : (
+        <>
+          <TotalIncome />
+          <View style={styles.contentContainer}>
+            <FlatList
+              data={paymentUnpaidResponse}
+              showsVerticalScrollIndicator={false}
+              renderItem={renderItemUnPaid}
+              keyExtractor={(item: any) => item.id}
+              ListFooterComponent={renderListFooter}
+              contentContainerStyle={{
+                paddingBottom: scale(200),
+              }}
+              ListHeaderComponent={headerUnPaid}
+            />
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 };
@@ -82,7 +100,7 @@ const styles = StyleSheet.create({
   },
   textPice: {
     color: "#3d5cff",
-    fontFamily: FontFamily.poppins_bold,
+    fontFamily: FontFamily.SFUIText_bold,
     fontSize: 18,
     fontWeight: "700",
   },
